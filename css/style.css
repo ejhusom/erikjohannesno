@@ -1,0 +1,176 @@
+* {
+    --txc: #393838;
+    /* --txc2: #1183b9; */
+    --txc2: #393838;
+    --bgc: #fff;
+    --bcg2: #f1f1f1;
+    --hlc: #70b4d5;
+}
+
+@media (prefers-color-scheme: dark) {
+    * {
+        --txc: #f5f5f5;
+        /* --txc2: #70b4d5; */
+        --txc2: #f5f5f5;
+        --bgc: #212121;
+        --bcg2: #313131;
+        --hlc: #1183b1;
+    }
+}
+
+body {
+    color: var(--txc);
+    background: var(--bgc);
+    font-family: "Tahoma", sans-serif;
+    /*font-family: monospace;*/
+    font-size: 0.90em;
+    max-width: 60em;
+    margin: 1.2em auto 0.3em auto;
+    padding-left: 8em;
+    padding-right: 8em;
+    box-sizing: border-box;
+    line-height: 1.6;
+}
+
+body.wide {
+    max-width: none;
+}
+
+header {
+    padding-bottom: 3em;
+}
+
+
+footer {
+    margin-top: 2em;
+    text-align: center;
+    font-size: 80%;
+    padding: 0.5rem;
+} 
+
+/*Links{{{*/
+a:link, a:visited {
+  color:  var(--txc2);
+}
+
+a:hover {
+  color: var(--hlc);
+}
+
+header a:hover {
+  color: var(--hlc);
+}
+
+header a.ghost:link, a.ghost:visited, a.ghost:hover {
+  /* color: var(--txc); */
+  text-decoration: none;
+}
+/*}}}*/
+
+header h1 {
+    margin-bottom: 0.0em;
+    font-size: 1.1rem;
+}
+
+h2, h3 {
+    font-size: 0.9rem;
+}
+
+nav a {
+    padding-right: 0.6em;
+    font-weight: 600;
+}
+
+img {
+    width: 100%;
+    padding-bottom: 0.2em;
+}
+
+/* Lists{{{ */
+li {
+    padding: 0.1em;
+    list-style-type: circle;
+}
+
+ul {
+    padding-left: 1em;
+}
+/* }}} */
+
+.gallerymasonry {
+    column-count: 1;
+    column-gap: 0.2rem;
+}
+
+section.gallerymasonry h2 {
+    margin-bottom: 0.1em;
+}
+
+.galleryitem {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+
+.date {
+    padding: 0em 0.5em;
+    width: 100%;
+}
+
+#contact {
+    list-style-type: none;
+}
+
+.sourceCode {
+    background: var(--bcg2);
+}
+
+figcaption {
+    margin-bottom: 2em;
+}
+
+video {
+    width: 100%;
+}
+
+blockquote {
+    font-style: italic;
+    font-size: 90%;
+    border-left: 3px solid;
+    padding-left: 1em;
+}
+
+
+/* Tablets and mobile devices{{{ */
+@media screen and (max-width: 900px) {
+    body {
+        max-width: none;
+        padding-left: 2em;
+        padding-right: 2em;
+        font-size: 110%;
+    }
+    h1, h2, h3 {
+        font-size: 1.1rem;
+    }
+
+    nav a {
+        display: block;
+    }
+    li.contactlink {
+        display: block;
+    }
+}
+
+/*Laptops and large screens{{{*/
+@media screen and (min-width: 900px) {
+    .maingallerymasonry {
+        column-count: 2;
+    }
+    .maingalleryitem {
+      max-height: 190px;
+    }
+}
+/*}}}*/

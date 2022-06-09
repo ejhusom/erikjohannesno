@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Erik Johannes Husom</title>
+        <base href="https://erikjohannes.no/">
+        <!-- <base href="file:///Users/erikjohannes/Documents/erikjohannesno/"> -->
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <meta name="author" content="Erik Johannes Husom">
+        <meta name="description" content="Personal website.">
+        
+        <link rel="icon" href="data:,">
+        <link href="css/style.css" rel="stylesheet" type="text/css" title="Stylesheet">
+        <!-- <link href="css/experimental.css" rel="alternate stylesheet" type="text/css" title="Experimental"> -->
+    </head>
+    <body>
+    <header>
+        <h1 class=p-name rel="me"><a href="https://erikjohannes.no/" class=ghost>Erik Johannes</a></h1>
+        <br>
+        <nav class=header-nav>
+            <!-- <a href="index.html">home</a> -->
+            <a href="blog.html">Blog</a>
+            <a href="photofeed.html">Photofeed</a>
+            <!-- <a href="mountain-conditions.html">Mountain conditions</a> -->
+            <!-- <a href="https://peakbase.app">Peakbase</a> -->
+            <a href="photography.html">Photography</a>
+            <a href="stuff.html">Stuff</a>
+            <a href="about.html">About</a>
+            <a href="index.xml">RSS</a>
+        </nav>
+    </header>
+<article>
+<h2>Maridalen
+</h2>
+<h3>10 Mar 2019</h3><!--more-->
+ <link rel="stylesheet" href="js/leaflet/leaflet.css" />
+<script src="js/leaflet/leaflet.js"></script>
+<script src="js/gpx.js"></script>
+<div id="map" style="height: 400px; width: 100%;">
+
+</div>
+<script>
+        var map = L.map('map');//.setView([60.14, 10.25], 11);
+        L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo4&zoom={z}&x={x}&y={y}', {
+            attribution: '<a href="http://www.kartverket.no/">Kartverket</a>'
+        }).addTo(map);
+        var gpx = 'posts/20190310-maridalen/høgruta-i-maridalen.gpx'; 
+        new L.GPX(gpx, {
+            async: true,
+            marker_options: {
+                startIconUrl: '../images/pin-icon-start.png',
+                endIconUrl:   '../images/pin-icon-end.png',
+                shadowUrl:    '../images/pin-shadow.png',
+                //clickable: true,
+                //showRouteInfo: true
+            },
+        }).on('loaded', function(e) {
+            map.fitBounds(e.target.getBounds());
+        }).addTo(map);
+</script>
+<p></p>
+<p><img src="posts/20190310-maridalen/maridalen01.jpg" /> <img src="posts/20190310-maridalen/maridalen02.jpg" /> <img src="posts/20190310-maridalen/maridalen03.jpg" /></p>
+</article>
+    <footer>
+        No tracking. No cookies. No visit logs.
+        <!-- <br> -->
+        <!-- Get updates via <a href="index.xml">RSS</a>. -->
+        <!-- <br> -->
+        <!-- If you got comments or feedback, feel free to send me an e-mail: <a href="mailto:erikjohannes@protonmail.com">erikjohannes@protonmail.com</a> :) -->
+        <!-- <br> -->
+        <!-- Website is built through self-made scripts and manual writing. -->
+        <br>
+        Copyright: &copy;2018-2022 Erik Johannes Husom. All rights reserved.
+    </footer>
+    </body>
+</html>
