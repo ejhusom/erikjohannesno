@@ -1,0 +1,40 @@
+body {
+    font-family: system-ui;
+    margin: 0 auto;
+    max-width: 653px;
+    padding: 10px;
+    line-height: 1.4;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+figure {
+    margin: 1.4em 0;
+}
+figcaption {
+    color: grey;
+    font-size: 13px;
+    text-align: center;
+}
+
+p code, li code {
+    border: 1px solid;
+    border-radius: 2px;
+    padding: 1px 2px;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+.date {
+    color: grey;
+}
