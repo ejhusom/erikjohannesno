@@ -30,6 +30,10 @@ body.wide {
     max-width: none;
 }
 
+article {
+    margin-bottom: 60px;
+}
+
 footer {
     margin-top: 2em;
     text-align: center;
