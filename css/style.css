@@ -100,7 +100,10 @@ section.gallerymasonry h2 {
 
 div.sourceCode {
     background: var(--bcg2);
+    padding: 2px 4px;
+    overflow: auto;
 }
+
 
 figcaption {
     margin-bottom: 2em;
