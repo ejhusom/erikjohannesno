@@ -58,7 +58,7 @@ class Website():
     def combine_layouts(self, body):
 
         page = "<!DOCTYPE html>\n"
-        page += "<html>\n"
+        page += '<html lang="en">\n'
         page += self.layout_files[0]
         page += "    <body>\n"
         page += self.layout_files[1]
