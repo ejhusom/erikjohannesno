@@ -14,7 +14,7 @@ I downloaded the apps for desktop and mobile, and everything was good to go.
 
 The most exciting features for me in Obsidian are the following:
 
-- Easily link between files, both between insividual notes and inserting images into notes by using Markdown syntax.
+- Easily link between files, both between individual notes and inserting images into notes by using Markdown syntax.
 - Open link to another file with a keypress.
 - Button for opening a random note (yes, I actually find this useful, because it creates opportunities for sparking ideas through serendipity, and it can also work as "spaced repetition" for things you want to learn or remember).
 - Links between files are updated automatically when you rename or move a file.
@@ -34,10 +34,15 @@ Because if this, I wanted instead to reconstruct in Vim (or at the command line)
 ### Easily insert links to other files
 
 To make this work, the links to other files has to be relative paths (otherwise images and links won't work properly when rendering the Markdown in HTML).
+With the plugin fzf.vim, the following line maps `ctrl-x ctrl-f` to search for any file in the parent directory from which you opened Vim (which means I always open Vim from the root directory of my note collection) and insert its relative path from the current open file:
+
+```vim
+```
 
 ### Open link to another file with a keypress
 
-Vim actually 
+Vim already had functionality for this, I just didn't know about it.
+`ctrl-w ctrl-f` opens the filepath under the cursor. 
 
 ### Opening a random note
 
