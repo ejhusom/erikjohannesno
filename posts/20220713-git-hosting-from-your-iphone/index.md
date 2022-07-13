@@ -36,6 +36,7 @@ I use the Working Copy git client app a lot, which can serve the git repos in th
 I was able to access the server through Finder on macOS, but I gave up after failing to connect to it at the command line from Ubuntu.
 Instead I tried setting up a git server at the command line in the iSH app.
 It proved to be the simplest and most usable approach for me.
+When using the iSH app, the setup is identical to how you would do it when setting up a git server on a normal Linux machine.
 In the app I installed git and git-daemon (they have to be installed individually):
 
 ```shell
