@@ -12,21 +12,23 @@
         <link rel="icon" href="data:,">
         <link href="css/style.css" rel="stylesheet" type="text/css" title="Stylesheet">
         <link href="css/minsite.css" rel="alternate stylesheet" type="text/css" title="minsite">
+        <!-- <link href="css/minsite.css" rel="stylesheet" type="text/css" title="minsite"> -->
     </head>
     <body>
     <header>
-        <h1 class=p-name rel="me"><a href="https://erikjohannes.no/" class=ghost>Erik Johannes</a></h1>
+        <!-- <h1 class=p-name rel="me"><a href="https://erikjohannes.no/" class=ghost>Erik Johannes</a></h1> -->
+        <h1 class=p-name rel="me">Erik Johannes</h1>
         <br>
         <nav class=header-nav>
-            <!-- <a href="index.html">home</a> -->
+            <a href="index.html">Home</a>
             <a href="blog.html">Blog</a>
             <a href="photofeed.html">Photofeed</a>
             <!-- <a href="mountain-conditions.html">Mountain conditions</a> -->
             <!-- <a href="https://peakbase.app">Peakbase</a> -->
             <a href="photography.html">Photography</a>
             <a href="stuff.html">Stuff</a>
-            <a href="#work">Work</a>
-            <a href="#about">About</a>
+            <a href="work.html">Work</a>
+            <a href="about.html">About</a>
             <a href="index.xml">RSS</a>
         </nav>
     </header>
@@ -34,21 +36,21 @@
 <h2>Dark mode on a website
 </h2>
 <h3>30 Jan 2021</h3><p>I just discovered that it is quite easy to make a website adjust the style to whether the client is using dark mode or not. Take a look at a snippet of my CSS for this website:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">--txc</span>: <span class="cn">#393838</span><span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">--lc</span>: <span class="cn">#1183b9</span><span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">--bgc</span>: <span class="cn">#fff</span><span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">--hlc</span>: <span class="cn">#70b4d5</span><span class="op">;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">@media</span> (<span class="kw">prefers-color-scheme</span>: dark) {</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span> {</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">--txc</span>: <span class="cn">#f5f5f5</span><span class="op">;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">--lc</span>: <span class="cn">#70b4d5</span><span class="op">;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">--bgc</span>: <span class="cn">#212121</span><span class="op">;</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">--hlc</span>: <span class="cn">#1183b10</span><span class="op">;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb1-1" title="1"><span class="op">*</span> {</a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="va">--txc</span>: <span class="cn">#393838</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="va">--lc</span>: <span class="cn">#1183b9</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="va">--bgc</span>: <span class="cn">#fff</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="va">--hlc</span>: <span class="cn">#70b4d5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-6" title="6">}</a>
+<a class="sourceLine" id="cb1-7" title="7"></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="im">@media</span> (<span class="kw">prefers-color-scheme</span>: dark) {</a>
+<a class="sourceLine" id="cb1-9" title="9">    <span class="op">*</span> {</a>
+<a class="sourceLine" id="cb1-10" title="10">        <span class="va">--txc</span>: <span class="cn">#f5f5f5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-11" title="11">        <span class="va">--lc</span>: <span class="cn">#70b4d5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-12" title="12">        <span class="va">--bgc</span>: <span class="cn">#212121</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-13" title="13">        <span class="va">--hlc</span>: #<span class="dv">1183</span>b10<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-14" title="14">    }</a>
+<a class="sourceLine" id="cb1-15" title="15">}</a></code></pre></div>
 <p>The first block defines the default values for two text colors, the background and a highlight color. With the second block, those variables are redefined if the user is using a dark system theme.</p>
 <p>This might be common knowledge for a lot of people, but have not seen this functionality much “in the wild”. Maybe some people prefer to keep the same colors anyway, but I think it is very comfortable that websites dynamically adapt to the system theme, especially when there are lots of articles.</p>
 </article>

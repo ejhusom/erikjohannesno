@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta name="author" content="Erik Johannes Husom" />
+        <meta name="description" content="Personal website." />
+        <title>Erik Johannes Husom</title>
+        <base href="https://erikjohannes.no/">
+        <!-- <base href="file:///Users/erikjohannes/Documents/erikjohannesno/"> -->
+        
+        <link rel="icon" href="data:,">
+        <link href="css/style.css" rel="stylesheet" type="text/css" title="Stylesheet">
+        <link href="css/minsite.css" rel="alternate stylesheet" type="text/css" title="minsite">
+        <!-- <link href="css/minsite.css" rel="stylesheet" type="text/css" title="minsite"> -->
+    </head>
+    <body>
+    <header>
+        <!-- <h1 class=p-name rel="me"><a href="https://erikjohannes.no/" class=ghost>Erik Johannes</a></h1> -->
+        <h1 class=p-name rel="me">Erik Johannes</h1>
+        <br>
+        <nav class=header-nav>
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="photofeed.html">Photofeed</a>
+            <!-- <a href="mountain-conditions.html">Mountain conditions</a> -->
+            <!-- <a href="https://peakbase.app">Peakbase</a> -->
+            <a href="photography.html">Photography</a>
+            <a href="stuff.html">Stuff</a>
+            <a href="work.html">Work</a>
+            <a href="about.html">About</a>
+            <a href="index.xml">RSS</a>
+        </nav>
+    </header>
+<article>
+<h2>On self-hosting, local storage and portable git hosting on iPhone
+</h2>
+<h3>13 Jul 2022</h3><p>I prefer having control of my own data, and therefore try to avoid using cloud services if I absolutely don’t have to (e. g., at work I’m pretty much forced to use the cloud services of my employer, which is Microsoft of course). Earlier I have been self-hosting some services, including file storage (Nextcloud), music server (Subsonic), git (gitea) and social media (Hubzilla). Then I moved to a place where I couldn’t easily set up my own server with port forwarding for external access, and my self-hosting was put on pause. As an experiment, partly motivated by the increased focus on the environmental impact of the expanding use of servers and cloud services, I attempted to reduce my use of cloud services to a minimum. Some of the things I did:</p>
+<ul>
+<li>Deleted my Spotify account and started using only my own local music collection (extra privacy benefit of eliminating the data collection of Spotify)</li>
+<li>Stopped using cloud file storage (up until then I had used Nextcloud and MEGA), and moved to using local storage with backups on external hard drives</li>
+<li>Archived all emails to local storage, keeping my email inbox clean.</li>
+<li>Deleted old and unecessary GitHub and Codeberg repositories.</li>
+</ul>
+<p>I moved to a more offline workflow, and realized that I don’t need to have all my digital stuff instantly available on any device with an Internet connection. This also have the added benefit of enabling me to go offline, which often improves my focus, without losing access to my files. Since I now live a place without Wi-Fi, it is a great advantage that I’m not that dependent on bandwith.</p>
+<p>The single most important cloud service for me, both professionally and privately, is git hosting. It is where I sync most of my work, code, notes and writings. Some things are private/personal (or at least should be hidden from the eyes of others), which of course are kept in private repos, but I would much prefer to host those repos myself. One option I have been considering is to pay for hosting of my own gitea instance, but I both want to save money and avoid having another cloud service (even though it would be managed by myself). I could also choose to have local repos without storage in the cloud, but I need to easily keep the repos synced between my personal latop, work laptop and phone. I started playing with the idea of having a portable git server on a Raspberry Pi Zero, powered by a power bank, which could set up its own Wi-Fi and start a git server automatically when booted and let me push and pull from repos hosted on it. This would however require me to carry an extra device.</p>
+<p>I then realized that maybe my phone, an iPhone, could serve as the git server instead. The App Store lists some apps that claim to be able to setup a git server, but after reading a couple of the prvacy policies, I decided I would sleep better at night if I didn’t have to trust some ambiguous wording on what and how data is collected. I use the Working Copy git client app a lot, which can serve the git repos in the app on a WebDAV server. I was able to access the server through Finder on macOS, but I gave up after failing to connect to it at the command line from Ubuntu. Instead I tried setting up a git server at the command line in the iSH app. It proved to be the simplest and most usable approach for me. In the app I installed git and git-daemon (they have to be installed individually):</p>
+<pre class="shell"><code>apk add git
+apk add git-daemon</code></pre>
+<p>Then I initialized a bare git repo:</p>
+<pre class="shell"><code>mkdir myrepo.git
+cd myrepo.git
+git init --bare</code></pre>
+<p>To serve the repo (and any other git repos in the same folder:</p>
+<pre class="shell"><code>cd ..
+git daemon --reuseaddr --base-path=. --export-all --verbose --informative-errors --enable=receive-pack</code></pre>
+<p>If you want to disable the ability to push to the repos (i. e., clone-only access), skip the last flag. To clone repos into Working Copy on the same phone, use <code>git://127.0.0.1:9418/myrepo.git</code> or <code>git://localhost:9418/myrepo.git</code> as the URL (9418 is the default port of <code>git daemon</code>). I don’t think iSH handles running inthe background well, so you might have to press “Clone” in Working Copy (after filling out the URL), switch to iSH to enable the server to complete the request, and then back to Working Copy. To clone to other devices, run</p>
+<pre class="shell"><code>git clone git://[ipaddress]:9418/myrepo.git</code></pre>
+<p>where <code>[ipaddress]</code> is the IP-address of your iPhone on the local network (the other devices obviously have to be connected to the same network).</p>
+<p>The drawback is of course having to start the server before every push/pull, but for my uses this is acceptable. Also, there is no authentication required to pull from the server, so one needs to be sure that there are no bad actors on the local network.</p>
+<p>Next up is trying the same thing on an Android phone (which I expect to be just as easy to do inside Termux), and then maybe setting up a mobile git server with authentication.</p>
+</article>
+    <footer>
+        No tracking. No cookies. No visit logs.
+        <br>
+        Copyright: &copy;2018-2022 Erik Johannes Husom. All rights reserved.
+    </footer>
+    </body>
+</html>
