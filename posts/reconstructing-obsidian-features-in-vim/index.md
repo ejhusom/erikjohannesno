@@ -7,9 +7,9 @@ tags:
 categories:
 ---
 
-I have a large collection of plain text files  (mostly Markdown) that contain all my notes and writings, both for work and non-work, which I navigate and modify using Vim, fzf, shell scripts and command line utilities (on mobile I use the excellent app [Working Copy]()).
+I have a large collection of plain text files (mostly Markdown) that contain all my notes and writings, both for work and non-work, which I navigate and modify using Vim, fzf, shell scripts and command line utilities (on mobile I use the excellent app [Working Copy](https://workingcopy.app/)).
 Everything is of course synced and version-controlled using Git.
-I recently discovered that Obsidian has a range of interesting features, and since it is meant to manage a collection of Markdown-notes (which still can be synced through a git-repo between desktop and mobile apps), I could try it out without having to do any changes at all to my current structure or formatting of my files. 
+I recently discovered that [Obsidian](https://obsidian.md/) has a range of interesting features, and since it is meant to manage a collection of Markdown-notes (which still can be synced through a git-repo between desktop and mobile apps), I could try it out without having to do any changes at all to my current structure or formatting of my files. 
 I downloaded the apps for desktop and mobile, and everything was good to go.
 
 The most exciting features for me in Obsidian are the following:
@@ -18,7 +18,6 @@ The most exciting features for me in Obsidian are the following:
 - Open link to another file with a keypress.
 - Button for opening a random note (yes, I actually find this useful, because it creates opportunities for sparking ideas through serendipity, and it can also work as "spaced repetition" for things you want to learn or remember).
 - Links between files are updated automatically when you rename or move a file.
-
 
 I think Obsidian works great in general, and even though it is closed source software, anyone can write plugins for it.
 There are many useful "community plugins" that really increases the usefulness of the program.
@@ -34,10 +33,14 @@ Because if this, I wanted instead to reconstruct in Vim (or at the command line)
 ### Easily insert links to other files
 
 To make this work, the links to other files has to be relative paths (otherwise images and links won't work properly when rendering the Markdown in HTML).
-With the plugin fzf.vim, the following line maps `ctrl-x ctrl-f` to search for any file in the parent directory from which you opened Vim (which means I always open Vim from the root directory of my note collection) and insert its relative path from the current open file:
+With the plugin fzf.vim, the following line maps `ctrl-x ctrl-f` to search for any file in the parent directory from which you opened Vim (which means I always open Vim from the root directory of my note collection) and insert its relative path from the current open file when you press Enter:
 
 ```vim
+inoremap <expr> <c-x><c-f> fzf#vim#complete("find -print0 <Bar> xargs --null realpath --relative-to " . expand("%:h"))
 ```
+
+The line above is put in your `.vimrc` (Vim configuration file). 
+Made based on tips from [this GitHub-thread](https://github.com/junegunn/fzf.vim/pull/628).
 
 ### Open link to another file with a keypress
 
@@ -50,16 +53,23 @@ This one was easily implemented in a bash script:
 
 
 ```shell
+#!/bin/bash
 
+file=$(find /path/to/markdown-collection/ -name "*.md" | sort -R | head -1)
+vim $file
 ```
 
+### TODO: Automatically update links when renaming or moving file
 
+I use linking between files quite a lot, especially for embedding images into Markdown-files.
+Sometimes I restructure or rename filenames, and since I might have embedded one image into multiple files, it would be a massive time saver if all the links could update automatically when moving or renaming a file.
+I tried searching for an existing solution; the only similar thing I could find was an [extension for VSCode](https://github.com/mathiassoeholm/markdown-link-updater), but no solution for Vim.
+My current plan is to make a shell script for moving/renaming files, which automatically updates all links to the file in Markdown-files of the working directory.
 
-### Automatically update links when renaming or moving file
+### General navigation
 
-This one was the hardest to figure out.
-
-
-
+The plugin [fzf.vim](https://github.com/junegunn/fzf.vim) makes navigation very easy, both inside Vim and at the command line.
+When having files open in Vim, the command `:Files` let's you fuzzy search for filenames, and `:Rg` (if you have installed [ripgrep](https://github.com/BurntSushi/ripgrep) let's you fuzzy search for file contents.
+I'm quite restrictive of adding specific configuration and plugins to my Vim setup and want to keep things lean (I only use two plugins currently), but fzf.vim has really made my workflow much better.
 
     

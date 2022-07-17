@@ -1,8 +1,8 @@
 ---
 title: "Building a laptop"
-date: 2021-05-24T21:47:12+02:00
+date: 2022-07-17T18:47:12+02:00
 type: ["posts"]
-draft: true
+draft: false
 tags:
 categories:
     - technology
@@ -25,7 +25,7 @@ computers](https://www.raspberrypi.org/) (henceforth referred to as *RPi*,
 *RPis* plural), which are cheap single-board computers that are made to be
 tinkered with. One of my RPis is the RPi 4, with 8GB RAM, which is the most
 powerful RPi available to date. I wanted to use this one to make a laptop with
-the following qualities:
+the following requirements:
 
 - Portable.
 - All parts are easy to replace.
