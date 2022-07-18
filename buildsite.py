@@ -23,7 +23,7 @@ import html
 import os
 import re
 
-import markdown2 as md
+import markdown as md
 
 class Website():
 

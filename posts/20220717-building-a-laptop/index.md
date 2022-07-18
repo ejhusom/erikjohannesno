@@ -69,19 +69,19 @@ The result is a portable computer (I call it a laptop, since it's a computer I
 can have on my lap, but I'm not sure if everyone agrees with me), with parts
 that are very easy to get hold off.
 
-![](posts/20210524-building-a-laptop/1.jpeg)
-![](posts/20210524-building-a-laptop/2.jpeg)
-![](posts/20210524-building-a-laptop/3.jpeg)
+![](posts/20220717-building-a-laptop/1.jpeg)
+![](posts/20220717-building-a-laptop/2.jpeg)
+![](posts/20220717-building-a-laptop/3.jpeg)
 
 I cut off a part of the display case in order to easily swap memory cards
 (which I do frequently, since I like to use different types of Linux operating
 systems).
 
-![](posts/20210524-building-a-laptop/4.jpeg)
+![](posts/20220717-building-a-laptop/4.jpeg)
 *A small part of the display case is cut off, in order to easily access the
 memory card that the OS is stored on.*
 
-![](posts/20210524-building-a-laptop/5.jpeg)
+![](posts/20220717-building-a-laptop/5.jpeg)
 *The laptop can easily be disassembled into these parts.*
 
 As a bonus, the computer can be mounted on other things that have a GoPro mount
@@ -89,7 +89,7 @@ on them. I have a strong clip with a mount on it, which enables me to attach
 the computer at the edge of a table or similar. This is very useful when I want
 to watch the display when I'm cooking or washing the dishes.
 
-![](posts/20210524-building-a-laptop/6.jpeg)
+![](posts/20220717-building-a-laptop/6.jpeg)
 *The computer and display mounted on a clip instead of the keyboard. Saves
 desktop space.*
 

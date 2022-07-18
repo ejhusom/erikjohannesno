@@ -20,13 +20,11 @@ In addition, I think it's awesome to use a piece of technology that's 50 years o
 Here's a few photos from the first roll I shot with the camera:
 
 ![Border collie taking a nap in a sofa.](posts/20220106-a-50-year-old-camera/01.jpg)
-*Restful border collie.*
 
-![Stone hut filled with snow.](posts/20220106-a-50-year-old-camera/02.jpg)
-*Inhospitable stone hut.*
+![Inhospitable stone hut filled with snow.](posts/20220106-a-50-year-old-camera/02.jpg)
 
 ![Snow-covered mountain.](posts/20220106-a-50-year-old-camera/03.jpg)
+
 *Send me an email if you think you can recognize this mountain, and I will tell you if you're right (hint: It's in Trollheimen, and not far away from the hut shown above).*
 
 ![Smørstabbtindane, a mountain massive on Jotunheimen, Norway.](posts/20220106-a-50-year-old-camera/04.jpg)
-*Smørstabbtindane, Jotunheimen, Norway.*
