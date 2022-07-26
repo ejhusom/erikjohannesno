@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta name="author" content="Erik Johannes Husom" />
+        <meta name="description" content="Personal website." />
+        <title>Erik Johannes Husom</title>
+        <base href="https://erikjohannes.no/">
+        <!-- <base href="file:///Users/erikjohannes/Documents/erikjohannesno/"> -->
+        
+        <link rel="icon" href="data:,">
+        <link href="css/style.css" rel="stylesheet" type="text/css" title="Stylesheet">
+    </head>
+    <body>
+    <header>
+        <h1 class=p-name rel="me">Erik Johannes</h1>
+        <br>
+        <nav class=header-nav>
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="photofeed.html">Photofeed</a>
+            <a href="photography.html">Photography</a>
+            <a href="stuff.html">Stuff</a>
+            <a href="work.html">Work</a>
+            <a href="about.html">About</a>
+            <a href="index.xml">RSS</a>
+        </nav>
+    </header>
+<article>
+<h2>Optimizing images for the web
+</h2>
+<h3>11 Dec 2021</h3><p>When you’re crafting your own website without any website builder or tools like Wordpress, it can be a bit challenging to know how to optimize images. JPG-files from a digital camera is usually a few MBs in size. For example, an image from my Gopro, with a resolution of 4032x3024, generally amounts to at least 2 MB. If you’re uploading such files, you’re wasting bandwith, since most screens and monitors won’t show the images in their full resolution anyway. I have found it suprisingly difficult to find “best practices” for optimizing images for the web using simple tools, but after a bit of research, I’ve managed to put together a script that combines three different command line tools to reduce image size without loosing to much quality.</p>
+<p>The three command line tools are:</p>
+<ul>
+<li><a href="https://www.exiftool.org/"><code>exiftool</code></a>: Edits EXIF-information. Used to remove metadata from the image, such as geolocation, which I don’t want to share on the web.</li>
+<li><a href="https://github.com/tjko/jpegoptim"><code>jpegoptim</code></a>: Optimizes JPG-files.</li>
+<li><a href="https://imagemagick.org/"><code>imagemagick</code></a>: Used to reduce resolution of image.</li>
+</ul>
+<p>Here’s the bash script, which takes files as input:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/bin/bash</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">for</span> <span class="ex">i</span> in <span class="st">&quot;</span><span class="va">$@</span><span class="st">&quot;</span><span class="kw">;</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="co"># Reduce all metadata, but keep orientation of image:</span></a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="ex">exiftool</span> -all:all= -tagsFromFile @ -exif:Orientation <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7">    <span class="co"># Optimize image to a size of 500 kB:</span></a>
+<a class="sourceLine" id="cb1-8" title="8">    <span class="ex">jpegoptim</span> --size=500k <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb1-9" title="9"></a>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="co"># Reduce resolution so the width is maximum 1500 pixels </span></a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="co"># (mogrify is a part of imagemagick)</span></a>
+<a class="sourceLine" id="cb1-12" title="12">    <span class="ex">mogrify</span> -resize 1500 <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="kw">done</span></a></code></pre></div>
+<p>I am by no means an expert on this, but I’ve found a routine that works fine. If you have any comments or better solutions, <a href="mailto:erikjohannes@protonmail.com">let me know</a>.</p>
+</article>
+    <footer>
+        No tracking. No cookies. No visit logs.
+        <br>
+        Copyright: &copy;2018-2022 Erik Johannes Husom. All rights reserved.
+    </footer>
+    </body>
+</html>
