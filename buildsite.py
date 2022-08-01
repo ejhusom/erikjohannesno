@@ -156,23 +156,23 @@ class Website():
                     rfcdate = utils.format_datetime(date)
                     print_date = datetime.datetime.strftime(date, "%d %b %Y")
 
-                    os.system(
-                            "pandoc {}/{}/index.md -o {}/{}/index.html".format(
-                                self.posts_folder, f, self.posts_folder, f
-                    ))
+                    # os.system(
+                    #         "pandoc {}/{}/index.md -o {}/{}/index.html".format(
+                    #             self.posts_folder, f, self.posts_folder, f
+                    # ))
 
                     # TODO: Double-check this new version without pandoc
-                    # with open(f"{self.posts_folder}/{f}/index.md", "r") as infile:
-                    #     md_version = infile.read()
+                    with open(f"{self.posts_folder}/{f}/index.md", "r") as infile:
+                        md_version = infile.read()
 
-                    # md_post = md_version.split("---")
-                    # md_front_matter = md_post[1]
-                    # md_content = md_post[2]
+                    md_post = md_version.split("---")
+                    md_front_matter = md_post[1]
+                    md_content = md_post[2]
 
-                    # html_version = md.markdown(md_content)
+                    html_version = md.markdown(md_content)
 
-                    # with open(f"{self.posts_folder}/{f}/index2.html", "w") as outfile:
-                    #     outfile.write(html_version)
+                    with open(f"{self.posts_folder}/{f}/index.html", "w") as outfile:
+                        outfile.write(html_version)
 
                     
                     # body = "<h2>blog</h2>"

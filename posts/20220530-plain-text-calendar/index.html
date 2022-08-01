@@ -30,8 +30,10 @@
 <article>
 <h2>Plain text calendar
 </h2>
-<h3>30 May 2022</h3><p>The last years I have been moving towards plain text files for almost any use case where I need to store information digitally, and after reading about <a href="https://terokarvinen.com/2021/calendar-txt/">Calendar.txt</a> I have started to use a plain text file as my calendar. I use (almost) the same template as described in the link, but I wrote my own script for generating the calendar template so I can easily make adjustments if needed. Example of the format with a few example events:</p>
-<pre><code>2023-01-02 w1
+<h3>30 May 2022</h3><p>The last years I have been moving towards plain text files for almost any use case where I need to store information digitally, and after reading about <a href="https://terokarvinen.com/2021/calendar-txt/">Calendar.txt</a> I have started to use a plain text file as my calendar.
+I use (almost) the same template as described in the link, but I wrote my own script for generating the calendar template so I can easily make adjustments if needed.
+Example of the format with a few example events:</p>
+<p><code>2023-01-02 w1
 2023-01-02 w1 Mon 
 2023-01-03 w1 Tue  12:00 Meeting.
 2023-01-04 w1 Wed 
@@ -46,13 +48,14 @@
 2023-01-12 w2 Thu  Seminar.
 2023-01-13 w2 Fri 
 2023-01-14 w2 Sat 
-2023-01-15 w2 Sun </code></pre>
-<p>I find it quite nice since it integrates well with the rest of my very plain text-oriented workflow, and it’s easily synced and managed with git together with the rest of my plain text files (notes, todos, etc). It takes some time to adapt to since the “user interface” is quite different than normal calendar applications, but for those who are familiar with quick navigation in text files (for example using Vim), it can be much more efficient to use a plain text calendar.</p>
+2023-01-15 w2 Sun</code></p>
+<p>I find it quite nice since it integrates well with the rest of my very plain text-oriented workflow, and it's easily synced and managed with git together with the rest of my plain text files (notes, todos, etc).
+It takes some time to adapt to since the "user interface" is quite different than normal calendar applications, but for those who are familiar with quick navigation in text files (for example using Vim), it can be much more efficient to use a plain text calendar.</p>
 <p>I also wrote a small bash script for opening the calendar on the current date in Vim:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">today</span><span class="op">=</span><span class="kw">`</span><span class="fu">date</span> +%Y-%m-%d<span class="kw">`</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> /path/to/calendar.txt <span class="at">-c</span> <span class="st">&quot;/</span><span class="va">$today</span><span class="st">&quot;</span></span></code></pre></div>
-</article>
+<p><code>``sh
+today=</code>date +%Y-%m-%d`</p>
+<p>vim /path/to/calendar.txt -c "/$today"
+```</p></article>
     <footer>
         No tracking. No cookies. No visit logs.
         <br>
