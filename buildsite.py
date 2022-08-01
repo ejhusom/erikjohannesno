@@ -395,6 +395,7 @@ class Website():
     def read_photo_feed2(self, granularity="yearly"):
 
         photofeed_links = []
+        photofeed_absolute_links = []
         photofeed_titles = []
         photofeed_dates = []
         photofeed_months = []
@@ -417,7 +418,11 @@ class Website():
             title = img_name[11:].split(".")[0]
             title = title.replace("-", " ")
 
-            link = "photofeed-" + year + ".html"
+            if granularity == "monthly":
+                link = "photofeed-" + year_and_month + ".html#" + img_name[:10]
+            else:
+                link = "photofeed-" + year + ".html#" + img_name[:10]
+                
             image_link = self.photofeed_folder + "/" + img_name
 
             content = f"<img src=\"{image_link}\" alt=''/><figcaption>{title}</figcaption>"
@@ -431,19 +436,22 @@ class Website():
             self.blog_image_links.append(image_link)
 
             photofeed_links.append(image_link)
+            photofeed_absolute_links.append(self.baseurl + link)
             photofeed_titles.append(title)
             photofeed_dates.append(date)
             photofeed_months.append(year_and_month)
             photofeed_years.append(year)
 
 
-        photofeed_dates, photofeed_links, photofeed_titles, photofeed_months, photofeed_years = zip(
-                *sorted(zip(photofeed_dates, photofeed_links, photofeed_titles,
+        photofeed_dates, photofeed_links, photofeed_absolute_links, photofeed_titles, photofeed_months, photofeed_years = zip(
+                *sorted(zip(photofeed_dates, photofeed_links,
+                    photofeed_absolute_links, photofeed_titles,
                     photofeed_months, photofeed_years))
         )
 
         photofeed_dates = list(reversed(list(photofeed_dates)))
         photofeed_links = list(reversed(list(photofeed_links)))
+        photofeed_absolute_links = list(reversed(list(photofeed_absolute_links)))
         photofeed_titles = list(reversed(list(photofeed_titles)))
         photofeed_months = list(reversed(list(photofeed_months)))
         photofeed_years = list(reversed(list(photofeed_years)))
@@ -468,124 +476,65 @@ class Website():
         year_set = sorted(list(set(photofeed_years)))[::-1]
 
         if granularity == "monthly":
-            for i, month in enumerate(month_set):
-
-                body = "<article>"
-                body += f"<h2>Photofeed {month}</h2>"
-                body += "\n"
-                body += "\n"
-                body += "<section class=gallerymasonry>"
-                body += "\n"
-
-                for l, t, d, m in zip(photofeed_links, photofeed_titles,
-                        photofeed_dates, photofeed_months):
-
-                    if m != month:
-                        continue
-
-                    
-                    body += "<section class=galleryitem>"
-                    body += "\n"
-                    body += f"<a href=\"{l}\">"
-                    body += f"<img src=\"{l}\" title=\"{t}\"/>"
-                    body += "</a>"
-                    body += "\n"
-                    body += f"<figcaption>{d}: {t}</figcaption>"
-                    body += "\n"
-                    body += "</section>"
-                    body += "\n"
-
-                body += "</section>"
-                body += "\n"
-                body += "</article>"
-                body += "\n"
-
-                # Add links to other years
-                for m2 in month_set:
-                    if m2 == month:
-                        continue
-                    body += f"<li><a href='photofeed-{m2}.html'>Photofeed {m2}</a></li>"
-                body += "\n"
-                body += "</article>"
-                body += "\n"
-
-                page = self.combine_layouts(body)
-                self.save_page(page, f"photofeed-{month}.html")
-
-                if i == 0:
-                    self.save_page(page, f"photofeed.html")
-
-                page = self.combine_layouts(body)
-                self.save_page(page, f"photofeed-{month}.html")
-
-                photofeed_pages.append([f"photofeed-{month}.html", month])
-                print(month)
-
-            # Add overview page
-            # body = "<article>"
-            # body += "<h2>Photofeed</h2>"
-            # body += "\n"
-            # body += "\n"
-            # body += "<ul>"
-            # body += "\n"
-
-            # for p in photofeed_pages:
-
-            #     body += f"<li><a href='{p[0]}'>{p[1]}</a></li>"
-                        
-            # body += "</ul>"
-
-            # page = self.combine_layouts(body)
-            # self.save_page(page, "photofeed.html")
-
+            period_set = month_set
+            photofeed_periods = photofeed_months
         else:
-            for i, year in enumerate(year_set):
+            period_set = year_set
+            photofeed_periods = photofeed_years
 
-                body = "<article>"
-                body += f"<h2>Photofeed {year}</h2>"
+        for i, period in enumerate(period_set):
+
+            body = "<article>"
+            body += f"<h2>Photofeed</h2>"
+            body += "\n"
+            # Add links to other years
+            body += "<ul>"
+            for period2 in period_set:
+                if period2 == period:
+                    continue
+                body += f"<li><a href='photofeed-{period2}.html'>{period2}</a></li>"
+            body += "</ul>"
+            body += "<br/>"
+            body += "\n"
+            body += f"<h3>{period}</h3>"
+            body += "\n"
+            body += "\n"
+            body += "<section class=gallerymasonry>"
+            body += "\n"
+
+            for l, a, t, d, p in zip(photofeed_links, photofeed_absolute_links, photofeed_titles,
+                    photofeed_dates, photofeed_periods):
+
+                # If image not in current period (month or year), skip it
+                if p != period:
+                    continue
+                
+                body += "<section class=galleryitem>"
                 body += "\n"
+                body += f"<a href=\"{l}\">"
+                body += f"<img id=\"{d}\" src=\"{l}\" title=\"{t}\"/>"
+                body += "</a>"
                 body += "\n"
-                body += "<section class=gallerymasonry>"
+                body += f"<figcaption>{d}: {t} "
+                body += f"<a href=\"{a}\" class=\"shareButton\">(shareable link)</a>"
+                body += "</figcaption>"
                 body += "\n"
-
-                for l, t, d, y in zip(photofeed_links, photofeed_titles,
-                        photofeed_dates, photofeed_years):
-
-                    if y != year:
-                        continue
-
-                    body += "<section class=galleryitem>"
-                    body += "\n"
-                    body += f"<a href=\"{l}\">"
-                    body += f"<img src=\"{l}\" title=\"{t}\"/>"
-                    body += "</a>"
-                    body += "\n"
-                    body += f"<figcaption>{d}: {t}</figcaption>"
-                    body += "\n"
-                    body += "</section>"
-                    body += "\n"
-
                 body += "</section>"
                 body += "\n"
-                # Add links to other years
-                for y2 in year_set:
-                    if y2 == year:
-                        continue
-                    body += f"<li><a href='photofeed-{y2}.html'>Photofeed {y2}</a></li>"
-                body += "\n"
-                body += "</article>"
-                body += "\n"
 
-                page = self.combine_layouts(body)
-                self.save_page(page, f"photofeed-{year}.html")
+            body += "</section>"
+            body += "\n"
+            body += "</article>"
+            body += "\n"
 
-                if i == 0:
-                    self.save_page(page, f"photofeed.html")
+            page = self.combine_layouts(body)
+            self.save_page(page, f"photofeed-{period}.html")
 
-                photofeed_pages.append([f"photofeed-{year}.html", year])
-                print(year)
+            if i == 0:
+                self.save_page(page, f"photofeed.html")
 
-
+            photofeed_pages.append([f"photofeed-{period}.html", period])
+            print(period)
 
     def generate_rss(self):
 
@@ -660,6 +609,6 @@ if __name__ == '__main__':
     website = Website()
     website.build_pages()
     website.build_blog(exclude_drafts=True)
-    website.read_photo_feed2("monthly")
+    website.read_photo_feed2("yearly")
     website.generate_rss()
 
