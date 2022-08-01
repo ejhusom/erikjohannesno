@@ -36,11 +36,13 @@ class Website():
         self.standalone_folder = "standalone"
         self.photography_folder = "photography"
         self.photofeed_folder = "photography/photofeed"
+        self.activities_folder = "activities"
         self.posts_folder = "posts"
 
         self.layout_filenames = ["head.html", "header.html", "footer.html"]
         self.layout_files = []
         self.img_exts = [".jpg", ".png", ".PNG", ".JPG", ".jpeg", ".JPEG"]
+        self.activity_exts = [".gpx"]
 
 
         self.wide_pages = [
@@ -265,134 +267,7 @@ class Website():
         with open("index.html", "w") as f:
             f.write(index)
             
-    def read_photo_feed(self):
-
-        photofeed_links = []
-        photofeed_titles = []
-        photofeed_dates = []
-        photofeed_months = []
-
-        for img_name in os.listdir(self.photofeed_folder):
-            print(img_name)
-
-            if not os.path.splitext(img_name)[1].lower() in self.img_exts:
-                continue
-
-            date = datetime.datetime.strptime(img_name[:10], "%Y-%m-%d")
-            year_and_month = img_name[:7]
-            rfcdate = utils.format_datetime(date)
-            print_date = datetime.datetime.strftime(date, "%d %b %Y")
-
-            # Take the second part of filename (after the date) and
-            # split at the extension. Replace dashes with space.
-            title = img_name[11:].split(".")[0]
-            title = title.replace("-", " ")
-
-            link = "photofeed-" + year_and_month + ".html"
-            image_link = self.photofeed_folder + "/" + img_name
-
-            content = f"<img src=\"{image_link}\" alt=''/><figcaption>{title}</figcaption>"
-
-            date = datetime.datetime.strftime(date, "%Y-%m-%d")
-            self.blog_links.append(link)
-            self.blog_titles.append(title)
-            self.blog_dates.append(date)
-            self.blog_rfcdates.append(rfcdate)
-            self.blog_contents.append(content)
-            self.blog_image_links.append(image_link)
-
-            photofeed_links.append(image_link)
-            photofeed_titles.append(title)
-            photofeed_dates.append(date)
-            photofeed_months.append(year_and_month)
-
-
-        photofeed_dates, photofeed_links, photofeed_titles, photofeed_months = zip(
-                *sorted(zip(photofeed_dates, photofeed_links, photofeed_titles,
-                    photofeed_months))
-        )
-
-        photofeed_dates = list(reversed(list(photofeed_dates)))
-        photofeed_links = list(reversed(list(photofeed_links)))
-        photofeed_titles = list(reversed(list(photofeed_titles)))
-        photofeed_months = list(reversed(list(photofeed_months)))
-
-        self.blog_dates, self.blog_titles, self.blog_links, self.blog_contents, self.blog_rfcdates, self.blog_image_links = zip(
-                *sorted(zip(self.blog_dates, self.blog_titles, self.blog_links,
-                    self.blog_contents, self.blog_rfcdates,
-                    self.blog_image_links))
-        )
-
-
-        self.blog_dates = list(reversed(list(self.blog_dates)))
-        self.blog_links = list(reversed(list(self.blog_links)))
-        self.blog_titles = list(reversed(list(self.blog_titles)))
-        self.blog_contents = list(reversed(list(self.blog_contents)))
-        self.blog_rfcdates = list(reversed(list(self.blog_rfcdates)))
-        self.blog_image_links = list(reversed(list(self.blog_image_links)))
-
-        photofeed_pages = []
-
-        month_set = sorted(list(set(photofeed_months)))[::-1]
-
-        for month in month_set:
-
-            body = "<article>"
-            body += f"<h2>Photofeed {month}</h2>"
-            body += "\n"
-            body += "\n"
-            body += "<section class=gallerymasonry>"
-            body += "\n"
-
-            for l, t, d, m in zip(photofeed_links, photofeed_titles,
-                    photofeed_dates, photofeed_months):
-
-                if m != month:
-                    continue
-
-                
-                body += "<section class=galleryitem>"
-                body += "\n"
-                body += f"<a href=\"{l}\">"
-                body += f"<img src=\"{l}\" title=\"{t}\"/>"
-                body += "</a>"
-                body += "\n"
-                body += f"<figcaption>{d}: {t}</figcaption>"
-                body += "\n"
-                body += "</section>"
-                body += "\n"
-
-            body += "</section>"
-            body += "\n"
-            body += "</article>"
-            body += "\n"
-
-                        
-
-            page = self.combine_layouts(body)
-            self.save_page(page, f"photofeed-{month}.html")
-
-            photofeed_pages.append([f"photofeed-{month}.html", month])
-            print(month)
-
-
-        body = "<article>"
-        body += "<h2>Photofeed</h2>"
-        body += "\n"
-        body += "\n"
-        body += "<ul>"
-        body += "\n"
-
-        for p in photofeed_pages:
-
-            body += f"<li><a href='{p[0]}'>{p[1]}</a></li>"
-                    
-        body += "</ul>"
-
-        page = self.combine_layouts(body)
-        self.save_page(page, "photofeed.html")
-
-    def read_photo_feed2(self, granularity="yearly"):
+    def read_photo_feed(self, granularity="yearly"):
 
         photofeed_links = []
         photofeed_absolute_links = []
@@ -536,6 +411,170 @@ class Website():
             photofeed_pages.append([f"photofeed-{period}.html", period])
             print(period)
 
+    def create_activity_feed(self):
+
+        activities_links = []
+        activities_absolute_links = []
+        activities_titles = []
+        activities_dates = []
+        activities_months = []
+        activities_years = []
+
+        for gpx_filename in os.listdir(self.activities_folder):
+            print(gpx_filename)
+
+            if not os.path.splitext(gpx_filename)[1].lower() in self.activity_exts:
+                continue
+
+            date = datetime.datetime.strptime(gpx_filename[:10], "%Y-%m-%d")
+            year_and_month = gpx_filename[:7]
+            year = gpx_filename[:4]
+            rfcdate = utils.format_datetime(date)
+            print_date = datetime.datetime.strftime(date, "%d %b %Y")
+
+            # Take the second part of filename (after the date) and
+            # split at the extension. Replace dashes with space.
+            title = os.path.splitext(gpx_filename[11:])[0]
+            title = title.replace("-", " ")
+
+            link = "activities-" + year + ".html#" + gpx_filename[:10]
+                
+            gpx_link = self.activities_folder + "/" + gpx_filename
+
+            content = title
+            # content = f"<img src=\"{image_link}\" alt=''/><figcaption>{title}</figcaption>"
+
+            date = datetime.datetime.strftime(date, "%Y-%m-%d")
+            self.blog_links.append(link)
+            self.blog_titles.append(title)
+            self.blog_dates.append(date)
+            self.blog_rfcdates.append(rfcdate)
+            self.blog_contents.append(content)
+            self.blog_image_links.append(gpx_link)
+
+            activities_links.append(link)
+            activities_absolute_links.append(self.baseurl + link)
+            activities_titles.append(title)
+            activities_dates.append(date)
+            activities_months.append(year_and_month)
+            activities_years.append(year)
+
+
+        activities_dates, activities_links, activities_absolute_links, activities_titles, activities_months, activities_years = zip(
+                *sorted(zip(activities_dates, activities_links,
+                    activities_absolute_links, activities_titles,
+                    activities_months, activities_years))
+        )
+
+        activities_dates = list(reversed(list(activities_dates)))
+        activities_links = list(reversed(list(activities_links)))
+        activities_absolute_links = list(reversed(list(activities_absolute_links)))
+        activities_titles = list(reversed(list(activities_titles)))
+        activities_months = list(reversed(list(activities_months)))
+        activities_years = list(reversed(list(activities_years)))
+
+        self.blog_dates, self.blog_titles, self.blog_links, self.blog_contents, self.blog_rfcdates, self.blog_image_links = zip(
+                *sorted(zip(self.blog_dates, self.blog_titles, self.blog_links,
+                    self.blog_contents, self.blog_rfcdates,
+                    self.blog_image_links))
+        )
+
+
+        self.blog_dates = list(reversed(list(self.blog_dates)))
+        self.blog_links = list(reversed(list(self.blog_links)))
+        self.blog_titles = list(reversed(list(self.blog_titles)))
+        self.blog_contents = list(reversed(list(self.blog_contents)))
+        self.blog_rfcdates = list(reversed(list(self.blog_rfcdates)))
+        self.blog_image_links = list(reversed(list(self.blog_image_links)))
+
+        activities_pages = []
+
+        month_set = sorted(list(set(activities_months)))[::-1]
+        year_set = sorted(list(set(activities_years)))[::-1]
+
+        period_set = year_set
+        activities_periods = activities_years
+
+        for i, period in enumerate(period_set):
+
+            body = "<article>"
+            body += """
+<link rel="stylesheet" href="js/leaflet/leaflet.css" />
+<script src="js/leaflet/leaflet.js"></script>
+<script src="js/gpx.js"></script>
+            """
+            body += f"<h2>Activities</h2>"
+            body += "\n"
+            # Add links to other years
+            body += "<ul>"
+            for period2 in period_set:
+                if period2 == period:
+                    continue
+                body += f"<li><a href='activities-{period2}.html'>{period2}</a></li>"
+            body += "</ul>"
+            body += "<br/>"
+            body += "\n"
+            body += f"<h3>{period}</h3>"
+            body += "\n"
+            body += "\n"
+            body += "<section class=gallerymasonry>"
+            body += "\n"
+
+            for l, a, t, d, p in zip(activities_links, activities_absolute_links, activities_titles,
+                    activities_dates, activities_periods):
+
+                print(l)
+                # If image not in current period (month or year), skip it
+                if p != period:
+                    continue
+                
+                body += "<section class=galleryitem>"
+                body += f"<h4>{d}: {t}</h4>"
+                body += "\n"
+                body += f"<a href=\"{a}\" class=\"shareButton\">(shareable link)</a>"
+                body += "<br/>"
+                body += "\n"
+                body += f"""<div id="{d}" style="height: 400px; width: 100%;"></div>"""
+                body += f"""
+<script>
+        var map = L.map('{d}');"""
+                body += """
+        L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+            maxZoom: 17,
+            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+        }).addTo(map);"""
+                body += f"var gpx = '{l}';"
+                body += """
+        new L.GPX(gpx, {
+            async: true,
+            marker_options: {
+                startIconUrl: 'img/pin-icon-start.png',
+                endIconUrl:   'img/pin-icon-end.png',
+                shadowUrl:    'img/pin-shadow.png',
+                //clickable: true,
+                //showRouteInfo: true
+            },
+        }).on('loaded', function(e) {
+            map.fitBounds(e.target.getBounds());
+        }).addTo(map);
+</script>"""
+                body += "</section>"
+                body += "\n"
+
+            body += "</section>"
+            body += "\n"
+            body += "</article>"
+            body += "\n"
+
+            page = self.combine_layouts(body)
+            self.save_page(page, f"activities-{period}.html")
+
+            if i == 0:
+                self.save_page(page, f"activities.html")
+
+            activities_pages.append([f"activities-{period}.html", period])
+            print(period)
+
     def generate_rss(self):
 
         with open("rssfeedtemplate.xml", "r") as f:
@@ -557,7 +596,7 @@ class Website():
 
             guid =  self.baseurl + l
 
-            if guid.startswith("https://erikjohannes.no/photofeed"):
+            if guid.startswith("https://erikjohannes.no/photofeed") or guid.startswith("https://erikjohannes.no/activities"):
                 guid = self.baseurl + i
                 c = c.replace(
                         'src="', 'src="' + self.baseurl
@@ -609,6 +648,7 @@ if __name__ == '__main__':
     website = Website()
     website.build_pages()
     website.build_blog(exclude_drafts=True)
-    website.read_photo_feed2("yearly")
-    website.generate_rss()
+    # website.read_photo_feed("yearly")
+    website.create_activity_feed()
+    # website.generate_rss()
 
