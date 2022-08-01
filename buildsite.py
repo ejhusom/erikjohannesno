@@ -435,6 +435,7 @@ class Website():
                     if os.path.splitext(f2)[1].lower() == ".md":
                         with open(activity_folder + f2, "r") as infile:
                             activity_text = infile.read()
+                            activity_text = md.markdown(activity_text)
                     if os.path.splitext(f2)[1].lower() in self.img_exts:
                         activity_images.append(activity_folder + f2)
 
