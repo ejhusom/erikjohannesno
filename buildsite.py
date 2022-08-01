@@ -6,10 +6,6 @@ Example:
 
     >>> python3 buildsite.py
 
-TODO:
-    - Generate RSS feed for photofeed.
-
-
 Author:   
     Erik Johannes Husom
 
@@ -161,7 +157,6 @@ class Website():
                     #             self.posts_folder, f, self.posts_folder, f
                     # ))
 
-                    # TODO: Double-check this new version without pandoc
                     with open(f"{self.posts_folder}/{f}/index.md", "r") as infile:
                         md_version = infile.read()
 
