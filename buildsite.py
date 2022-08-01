@@ -452,7 +452,7 @@ class Website():
             self.blog_contents.append(content)
             self.blog_image_links.append(gpx_link)
 
-            activities_links.append(link)
+            activities_links.append(gpx_link)
             activities_absolute_links.append(self.baseurl + link)
             activities_titles.append(title)
             activities_dates.append(date)
@@ -520,6 +520,7 @@ class Website():
             body += "<section class=gallerymasonry>"
             body += "\n"
 
+            count = 0
             for l, a, t, d, p in zip(activities_links, activities_absolute_links, activities_titles,
                     activities_dates, activities_periods):
 
@@ -529,23 +530,22 @@ class Website():
                     continue
                 
                 body += "<section class=galleryitem>"
-                body += f"<h4>{d}: {t}</h4>"
-                body += "\n"
+                body += f"<h4>{d}: {t} "
                 body += f"<a href=\"{a}\" class=\"shareButton\">(shareable link)</a>"
+                body += "</h4>"
                 body += "<br/>"
                 body += "\n"
                 body += f"""<div id="{d}" style="height: 400px; width: 100%;"></div>"""
-                body += f"""
-<script>
-        var map = L.map('{d}');"""
+                body += "<script>"
+                body += f" var map{count} = L.map('{d}');"
                 body += """
         L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
-            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-        }).addTo(map);"""
-                body += f"var gpx = '{l}';"
+            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'"""
+                body += "})" + f".addTo(map{count});"
+                body += f"var gpx{count} = '{l}';"
+                body += f" new L.GPX(gpx{count}" + ", {"
                 body += """
-        new L.GPX(gpx, {
             async: true,
             marker_options: {
                 startIconUrl: 'img/pin-icon-start.png',
@@ -554,12 +554,13 @@ class Website():
                 //clickable: true,
                 //showRouteInfo: true
             },
-        }).on('loaded', function(e) {
-            map.fitBounds(e.target.getBounds());
-        }).addTo(map);
-</script>"""
+        }).on('loaded', function(e) {"""
+                body += f"map{count}.fitBounds(e.target.getBounds());"
+                body += "})" + f".addTo(map{count});</script>"
                 body += "</section>"
                 body += "\n"
+
+                count += 1
 
             body += "</section>"
             body += "\n"
@@ -648,7 +649,7 @@ if __name__ == '__main__':
     website = Website()
     website.build_pages()
     website.build_blog(exclude_drafts=True)
-    # website.read_photo_feed("yearly")
+    website.read_photo_feed("yearly")
     website.create_activity_feed()
-    # website.generate_rss()
+    website.generate_rss()
 
