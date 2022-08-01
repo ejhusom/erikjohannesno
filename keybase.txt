@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/bjornson
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://erikjohannes.no
+  * I am bjornson (https://keybase.io/bjornson) on keybase.
+  * I have a public key ASCnxVpFlFKhLt0Fd5U2P8qgrwXS0YO-RKpbaC4CXghNkAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120a7c55a459452a12edd057795363fcaa0af05d2d183be44aa5b682e025e084d900a",
+      "host": "keybase.io",
+      "kid": "0120a7c55a459452a12edd057795363fcaa0af05d2d183be44aa5b682e025e084d900a",
+      "uid": "5f65ec03dc1907754bc999a0566eef19",
+      "username": "bjornson"
+    },
+    "merkle_root": {
+      "ctime": 1658178647,
+      "hash": "6164a654091fbcf1cf043eb85e87636b7bd07494030657b3c865cbc55ba01b3c7e8373aa22adab2ed1300f51d397774ad0e53754ef858a56e3376e83e6f4f3f3",
+      "hash_meta": "d05737eb549b2955966fa86bd6ea653f15e23360597daa6f05332f8066425c43",
+      "seqno": 22870735
+    },
+    "service": {
+      "entropy": "MKF+KprTe9e7KIltBH2eZ2bY",
+      "hostname": "erikjohannes.no",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.0.1"
+  },
+  "ctime": 1658178660,
+  "expire_in": 504576000,
+  "prev": "643d279049eb3b5beb2d2da41c4e3c5330daba525b5c5a1db957434477dc95f6",
+  "seqno": 7,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgp8VaRZRSoS7dBXeVNj/KoK8F0tGDvkSqW2guAl4ITZAKp3BheWxvYWTESpcCB8QgZD0nkEnrO1vrLS2kHE48UzDaulJbXFoduVdDRHfclfbEIKe2RydEzqDICGVBVPSdeA62IH4IypoTq+/sJdDhwh+SAgHCo3NpZ8RAcQytGc1N4aFKiwtUSAePi+zPEl+ZbE5uxEsPt7nIeZTTJl35IWEVK/IuUzvMgOtUvH87tit+mErik4i8bf9iBqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIOJ0R2jhZLf7rSULxIGqeoPLQ5qxUZB2TSVnTqCCxg6Ko3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/bjornson
+
+==================================================================
