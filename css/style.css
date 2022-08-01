@@ -91,15 +91,16 @@ section.gallerymasonry h2 {
 .galleryitem {
     display: inline-block;
     position: relative;
-    width: 100%;
+    /* width: 100%; */
     text-align: center;
     overflow: hidden;
 }
 
 section.activity {
-    box-shadow: 3px 3px 15px 3px #666666;
+    box-shadow: 1px 1px 10px 1px #666666;
     border-radius: 8px;
-    margin: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
 }
 
 section.activity img {
