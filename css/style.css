@@ -65,8 +65,10 @@ nav a {
 }
 
 img {
-    width: 100%;
+    width: 90%;
     padding-bottom: 0.2em;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
 }
 
 /* Lists{{{ */
@@ -89,9 +91,11 @@ section.gallerymasonry h2 {
 }
 
 .galleryitem {
-    display: inline-block;
+    /* display: inline-block; */
     position: relative;
-    /* width: 100%; */
+    /* width: 90%; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
     text-align: center;
     overflow: hidden;
 }
