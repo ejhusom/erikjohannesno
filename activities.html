@@ -38,7 +38,7 @@
 
 <section class=gallerymasonry>
 <section class="galleryitem activity"><h4>2022-05-29: Skaubygdaløpet 2. plass <a href="https://erikjohannes.no/activities-2022.html#2022-05-29" class="shareButton">(shareable link)</a></h4>
-<div id=2022-05-29-info><div id="2022-05-29-distance"></div><div id="2022-05-29-elevationGain"></div></div><br /><div id="2022-05-29" style="height: 400px; width: 100%;"></div><script> var map0 = L.map('2022-05-29');
+<div id=2022-05-29-info><div id="2022-05-29-distance"></div><div id="2022-05-29-elevationGain"></div><div id="2022-05-29-duration"></div></div><br /><div id="2022-05-29" style="height: 400px; width: 100%;"></div><script> var map0 = L.map('2022-05-29');
         L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
             attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'}).addTo(map0);var gpx0 = 'activities/2022-05-29-Skaubygdaløpet-2.-plass/2022-05-29-Skaubygdaløpet-2.-plass.gpx'; new L.GPX(gpx0, {
@@ -54,10 +54,11 @@
 map0.fitBounds(e.target.getBounds());
 addText("Distance: " + (e.target.get_distance()/1000).toFixed(2) + " km", "2022-05-29-distance");
 addText("Elevation gain: " + e.target.get_elevation_gain().toFixed(0) + " m", "2022-05-29-elevationGain");
+addText("Duration: " + new Date(e.target.get_moving_time()).toISOString().substr(11, 8), "2022-05-29-duration");
 }).addTo(map0);</script>
 </section>
 <section class="galleryitem activity"><h4>2022-05-16: Rando fra Krossbu <a href="https://erikjohannes.no/activities-2022.html#2022-05-16" class="shareButton">(shareable link)</a></h4>
-<div id=2022-05-16-info><div id="2022-05-16-distance"></div><div id="2022-05-16-elevationGain"></div><div id="2022-05-16-text">6 topper over 2000 moh. Nydelig vårtur.
+<div id=2022-05-16-info><div id="2022-05-16-distance"></div><div id="2022-05-16-elevationGain"></div><div id="2022-05-16-duration"></div><br /><div id="2022-05-16-text">6 topper over 2000 moh. Nydelig vårtur.
 </div></div><br /><div id="2022-05-16" style="height: 400px; width: 100%;"></div><script> var map1 = L.map('2022-05-16');
         L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
@@ -74,6 +75,7 @@ addText("Elevation gain: " + e.target.get_elevation_gain().toFixed(0) + " m", "2
 map1.fitBounds(e.target.getBounds());
 addText("Distance: " + (e.target.get_distance()/1000).toFixed(2) + " km", "2022-05-16-distance");
 addText("Elevation gain: " + e.target.get_elevation_gain().toFixed(0) + " m", "2022-05-16-elevationGain");
+addText("Duration: " + new Date(e.target.get_moving_time()).toISOString().substr(11, 8), "2022-05-16-duration");
 }).addTo(map1);</script>
 <a href="activities/2022-05-16-Rando-fra-Krossbu/Utsikt-fra-Store-Smørstabbtind.JPG"><img src="activities/2022-05-16-Rando-fra-Krossbu/Utsikt-fra-Store-Smørstabbtind.JPG" title="Utsikt fra Store Smørstabbtind"/></a>
 <figcaption>Utsikt fra Store Smørstabbtind</figcaption></section>

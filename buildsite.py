@@ -566,7 +566,9 @@ class Website():
                 body += f"<div id={d}-info>"
                 body += f"""<div id="{d}-distance"></div>"""
                 body += f"""<div id="{d}-elevationGain"></div>"""
+                body += f"""<div id="{d}-duration"></div>"""
                 if e is not None:
+                    body += "<br />"
                     body += f"""<div id="{d}-text">{e}</div>"""
                 body += "</div>"
                 body += "<br />"
@@ -592,9 +594,11 @@ class Website():
                 //showRouteInfo: true
             },
         }).on('loaded', function(e) {\n"""
+                # body += "console.log(e.target);"
                 body += f"map{count}.fitBounds(e.target.getBounds());\n"
                 body += f"""addText("Distance: " + (e.target.get_distance()/1000).toFixed(2) + " km", "{d}-distance");\n"""
                 body += f"""addText("Elevation gain: " + e.target.get_elevation_gain().toFixed(0) + " m", "{d}-elevationGain");\n"""
+                body += f"""addText("Duration: " + new Date(e.target.get_moving_time()).toISOString().substr(11, 8), "{d}-duration");\n"""
                 body += "})"
                 body += f".addTo(map{count});"
                 body += "</script>\n"
