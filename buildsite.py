@@ -533,10 +533,13 @@ class Website():
                 body += f"<h4>{d}: {t} "
                 body += f"<a href=\"{a}\" class=\"shareButton\">(shareable link)</a>"
                 body += "</h4>"
-                body += "<br/>"
                 body += "\n"
+                body += "<div>"
+                body += f"""<div id="{d}-distance"></div>"""
+                body += f"""<div id="{d}-elevationGain"></div>"""
+                body += "</div>"
+                body += "<br />"
                 body += f"""<div id="{d}" style="height: 400px; width: 100%;">"""
-                # body += f"<span></span>"
                 body += "</div>"
                 body += "<script>"
                 body += f" var map{count} = L.map('{d}');"
@@ -556,16 +559,10 @@ class Website():
                 //clickable: true,
                 //showRouteInfo: true
             },
-        }).on('loaded', function(e) {"""
-                body += f"map{count}.fitBounds(e.target.getBounds());"
-                body += f"document.getElementById('{d}').innerHTML ="
-                body += """
-                    e.target, e.target.get_name() 
-                    + ": " + (e.target.get_distance()/1000).toFixed(2) + " km"
-                    + ", elev. gain: " + e.target.get_elevation_gain().toFixed(0) + " m"
-                    + " (" + e.target.get_elevation_min().toFixed(0) + "/"
-                    + e.target.get_elevation_max().toFixed(0) + " masl)."
-                ;"""
+        }).on('loaded', function(e) {\n"""
+                body += f"map{count}.fitBounds(e.target.getBounds());\n"
+                body += f"""addText("Distance: " + (e.target.get_distance()/1000).toFixed(2) + " km", "{d}-distance");\n"""
+                body += f"""addText("Elevation gain: " + e.target.get_elevation_gain().toFixed(0) + " m", "{d}-elevationGain");\n"""
                 body += "})"
                 body += f".addTo(map{count});"
                 body += "</script>"
@@ -578,6 +575,12 @@ class Website():
             body += "\n"
             body += "</article>"
             body += "\n"
+            body += """
+            <script>
+            function addText(text, divId) {
+                document.getElementById(divId).innerHTML = text;
+            }
+            </script>"""
 
             page = self.combine_layouts(body)
             self.save_page(page, f"activities-{period}.html")
