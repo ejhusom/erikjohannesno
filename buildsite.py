@@ -167,7 +167,7 @@ class Website():
 
                     md_post = md_version.split("---")
                     md_front_matter = md_post[1]
-                    md_content = md_post[2]
+                    md_content = md_post[2:]
 
                     html_version = md.markdown(md_content)
 
