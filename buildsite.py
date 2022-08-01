@@ -415,15 +415,39 @@ class Website():
 
         activities_links = []
         activities_absolute_links = []
+        activities_images = []
         activities_titles = []
+        activities_texts = []
         activities_dates = []
         activities_months = []
         activities_years = []
 
-        for gpx_filename in os.listdir(self.activities_folder):
-            print(gpx_filename)
+        gpx_filename = None
 
-            if not os.path.splitext(gpx_filename)[1].lower() in self.activity_exts:
+        for f in os.listdir(self.activities_folder):
+            # Each activity must have its own folder
+            if os.path.isdir(self.activities_folder + "/" + f):
+                activity_folder = self.activities_folder + "/" + f + "/"
+                gpx_filename = None
+                activity_text = None
+                activity_images = []
+                # Find gpx file in folder
+                for f2 in os.listdir(activity_folder):
+                    if os.path.splitext(f2)[1].lower() in self.activity_exts:
+                        gpx_filename = f2
+                    # If there is a Markdown file in the folder, use the text
+                    # as content.
+                    if os.path.splitext(f2)[1].lower() == ".md":
+                        with open(activity_folder + f2, "r") as infile:
+                            activity_text = infile.read()
+                    if os.path.splitext(f2)[1].lower() in self.img_exts:
+                        activity_images.append(activity_folder + f2)
+
+                # If no gpx file is found, continue to next filder
+                if gpx_filename == None:
+                    continue
+
+            else:
                 continue
 
             date = datetime.datetime.strptime(gpx_filename[:10], "%Y-%m-%d")
@@ -439,10 +463,12 @@ class Website():
 
             link = "activities-" + year + ".html#" + gpx_filename[:10]
                 
-            gpx_link = self.activities_folder + "/" + gpx_filename
+            gpx_link = activity_folder + gpx_filename
 
-            content = title
-            # content = f"<img src=\"{image_link}\" alt=''/><figcaption>{title}</figcaption>"
+            if activity_text == None:
+                content = title
+            else:
+                content = activity_text
 
             date = datetime.datetime.strftime(date, "%Y-%m-%d")
             self.blog_links.append(link)
@@ -454,22 +480,27 @@ class Website():
 
             activities_links.append(gpx_link)
             activities_absolute_links.append(self.baseurl + link)
+            activities_images.append(activity_images)
             activities_titles.append(title)
+            activities_texts.append(activity_text)
             activities_dates.append(date)
             activities_months.append(year_and_month)
             activities_years.append(year)
 
 
-        activities_dates, activities_links, activities_absolute_links, activities_titles, activities_months, activities_years = zip(
+        activities_dates, activities_links, activities_absolute_links, activities_images, activities_titles, activities_texts, activities_months, activities_years = zip(
                 *sorted(zip(activities_dates, activities_links,
-                    activities_absolute_links, activities_titles,
+                    activities_absolute_links, activities_images, activities_titles,
+                    activities_texts,
                     activities_months, activities_years))
         )
 
         activities_dates = list(reversed(list(activities_dates)))
         activities_links = list(reversed(list(activities_links)))
         activities_absolute_links = list(reversed(list(activities_absolute_links)))
+        activities_images = list(reversed(list(activities_images)))
         activities_titles = list(reversed(list(activities_titles)))
+        activities_texts = list(reversed(list(activities_texts)))
         activities_months = list(reversed(list(activities_months)))
         activities_years = list(reversed(list(activities_years)))
 
@@ -521,26 +552,32 @@ class Website():
             body += "\n"
 
             count = 0
-            for l, a, t, d, p in zip(activities_links, activities_absolute_links, activities_titles,
+            for l, a, im, t, e, d, p in zip(activities_links,
+                    activities_absolute_links, activities_images, activities_titles,
+                    activities_texts,
                     activities_dates, activities_periods):
 
                 print(l)
                 # If image not in current period (month or year), skip it
                 if p != period:
                     continue
-                
-                body += "<section class=galleryitem>"
+
+                # Make section in overview page
+                body += """<section class="galleryitem activity">"""
                 body += f"<h4>{d}: {t} "
                 body += f"<a href=\"{a}\" class=\"shareButton\">(shareable link)</a>"
                 body += "</h4>"
                 body += "\n"
-                body += "<div>"
+                body += f"<div id={d}-info>"
                 body += f"""<div id="{d}-distance"></div>"""
                 body += f"""<div id="{d}-elevationGain"></div>"""
+                if e is not None:
+                    body += f"""<div id="{d}-text">{e}</div>"""
                 body += "</div>"
                 body += "<br />"
                 body += f"""<div id="{d}" style="height: 400px; width: 100%;">"""
                 body += "</div>"
+
                 body += "<script>"
                 body += f" var map{count} = L.map('{d}');"
                 body += """
@@ -565,7 +602,18 @@ class Website():
                 body += f"""addText("Elevation gain: " + e.target.get_elevation_gain().toFixed(0) + " m", "{d}-elevationGain");\n"""
                 body += "})"
                 body += f".addTo(map{count});"
-                body += "</script>"
+                body += "</script>\n"
+
+                # Add images
+                for image in im:
+                    image_title = os.path.splitext(os.path.basename(image))[0]
+                    image_title = image_title.replace("-", " ")
+                    body += f"<a href=\"{image}\">"
+                    body += f"<img src=\"{image}\" title=\"{image_title}\"/>"
+                    body += "</a>"
+                    body += "\n"
+                    body += f"<figcaption>{image_title}</figcaption>"
+
                 body += "</section>"
                 body += "\n"
 

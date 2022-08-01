@@ -49,9 +49,9 @@
 2023-01-15 w2 Sun </code></pre>
 <p>I find it quite nice since it integrates well with the rest of my very plain text-oriented workflow, and it’s easily synced and managed with git together with the rest of my plain text files (notes, todos, etc). It takes some time to adapt to since the “user interface” is quite different than normal calendar applications, but for those who are familiar with quick navigation in text files (for example using Vim), it can be much more efficient to use a plain text calendar.</p>
 <p>I also wrote a small bash script for opening the calendar on the current date in Vim:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="va">today=</span><span class="kw">`</span><span class="fu">date</span> +%Y-%m-%d<span class="kw">`</span></a>
-<a class="sourceLine" id="cb2-2" title="2"></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="ex">vim</span> /path/to/calendar.txt -c <span class="st">&quot;/</span><span class="va">$today</span><span class="st">&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">today</span><span class="op">=</span><span class="kw">`</span><span class="fu">date</span> +%Y-%m-%d<span class="kw">`</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> /path/to/calendar.txt <span class="at">-c</span> <span class="st">&quot;/</span><span class="va">$today</span><span class="st">&quot;</span></span></code></pre></div>
 </article>
     <footer>
         No tracking. No cookies. No visit logs.

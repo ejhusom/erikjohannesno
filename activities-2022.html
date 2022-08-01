@@ -36,11 +36,11 @@
 <h3>2022</h3>
 
 <section class=gallerymasonry>
-<section class=galleryitem><h4>2022-05-29: Skaubygdaløpet 2. plass <a href="https://erikjohannes.no/activities-2022.html#2022-05-29" class="shareButton">(shareable link)</a></h4><br/>
-<div id="2022-05-29" style="height: 400px; width: 100%;"></div><script> var map0 = L.map('2022-05-29');
+<section class="galleryitem activity"><h4>2022-05-29: Skaubygdaløpet 2. plass <a href="https://erikjohannes.no/activities-2022.html#2022-05-29" class="shareButton">(shareable link)</a></h4>
+<div id=2022-05-29-info><div id="2022-05-29-distance"></div><div id="2022-05-29-elevationGain"></div></div><br /><div id="2022-05-29" style="height: 400px; width: 100%;"></div><script> var map0 = L.map('2022-05-29');
         L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
-            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'}).addTo(map0);var gpx0 = 'activities/2022-05-29-Skaubygdaløpet-2.-plass.gpx'; new L.GPX(gpx0, {
+            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'}).addTo(map0);var gpx0 = 'activities/2022-05-29-Skaubygdaløpet-2.-plass/2022-05-29-Skaubygdaløpet-2.-plass.gpx'; new L.GPX(gpx0, {
             async: true,
             marker_options: {
                 startIconUrl: 'img/pin-icon-start.png',
@@ -49,18 +49,18 @@
                 //clickable: true,
                 //showRouteInfo: true
             },
-        }).on('loaded', function(e) {map0.fitBounds(e.target.getBounds());document.getElementById('2022-05-29').innerHTML =
-                    e.target, e.target.get_name() 
-                    + ": " + (e.target.get_distance()/1000).toFixed(2) + " km"
-                    + ", elev. gain: " + e.target.get_elevation_gain().toFixed(0) + " m"
-                    + " (" + e.target.get_elevation_min().toFixed(0) + "/"
-                    + e.target.get_elevation_max().toFixed(0) + " masl)."
-                ;}).addTo(map0);</script></section>
-<section class=galleryitem><h4>2022-05-16: Rando fra Krossbu <a href="https://erikjohannes.no/activities-2022.html#2022-05-16" class="shareButton">(shareable link)</a></h4><br/>
-<div id="2022-05-16" style="height: 400px; width: 100%;"></div><script> var map1 = L.map('2022-05-16');
+        }).on('loaded', function(e) {
+map0.fitBounds(e.target.getBounds());
+addText("Distance: " + (e.target.get_distance()/1000).toFixed(2) + " km", "2022-05-29-distance");
+addText("Elevation gain: " + e.target.get_elevation_gain().toFixed(0) + " m", "2022-05-29-elevationGain");
+}).addTo(map0);</script>
+</section>
+<section class="galleryitem activity"><h4>2022-05-16: Rando fra Krossbu <a href="https://erikjohannes.no/activities-2022.html#2022-05-16" class="shareButton">(shareable link)</a></h4>
+<div id=2022-05-16-info><div id="2022-05-16-distance"></div><div id="2022-05-16-elevationGain"></div><div id="2022-05-16-text">6 topper over 2000 moh. Nydelig vårtur.
+</div></div><br /><div id="2022-05-16" style="height: 400px; width: 100%;"></div><script> var map1 = L.map('2022-05-16');
         L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
-            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'}).addTo(map1);var gpx1 = 'activities/2022-05-16-Rando-fra-Krossbu.gpx'; new L.GPX(gpx1, {
+            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'}).addTo(map1);var gpx1 = 'activities/2022-05-16-Rando-fra-Krossbu/2022-05-16-Rando-fra-Krossbu.gpx'; new L.GPX(gpx1, {
             async: true,
             marker_options: {
                 startIconUrl: 'img/pin-icon-start.png',
@@ -69,16 +69,21 @@
                 //clickable: true,
                 //showRouteInfo: true
             },
-        }).on('loaded', function(e) {map1.fitBounds(e.target.getBounds());document.getElementById('2022-05-16').innerHTML =
-                    e.target, e.target.get_name() 
-                    + ": " + (e.target.get_distance()/1000).toFixed(2) + " km"
-                    + ", elev. gain: " + e.target.get_elevation_gain().toFixed(0) + " m"
-                    + " (" + e.target.get_elevation_min().toFixed(0) + "/"
-                    + e.target.get_elevation_max().toFixed(0) + " masl)."
-                ;}).addTo(map1);</script></section>
+        }).on('loaded', function(e) {
+map1.fitBounds(e.target.getBounds());
+addText("Distance: " + (e.target.get_distance()/1000).toFixed(2) + " km", "2022-05-16-distance");
+addText("Elevation gain: " + e.target.get_elevation_gain().toFixed(0) + " m", "2022-05-16-elevationGain");
+}).addTo(map1);</script>
+<a href="activities/2022-05-16-Rando-fra-Krossbu/Utsikt-fra-Store-Smørstabbtind.JPG"><img src="activities/2022-05-16-Rando-fra-Krossbu/Utsikt-fra-Store-Smørstabbtind.JPG" title="Utsikt fra Store Smørstabbtind"/></a>
+<figcaption>Utsikt fra Store Smørstabbtind</figcaption></section>
 </section>
 </article>
-    <footer>
+
+            <script>
+            function addText(text, divId) {
+                document.getElementById(divId).innerHTML = text;
+            }
+            </script>    <footer>
         No tracking. No cookies. No visit logs.
         <br>
         Copyright: &copy;2018-2022 Erik Johannes Husom. All rights reserved.
