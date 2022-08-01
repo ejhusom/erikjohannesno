@@ -1,8 +1,8 @@
 ---
 title: "Gjert the border collie doing what he loves most"
-date: 2020-11-11T20:17:11+01:00
+date: 2022-08-01T07:17:11+01:00
 type: ["posts"]
-draft: true
+draft: false
 tags:
     - dogs
 categories:
