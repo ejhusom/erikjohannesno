@@ -527,9 +527,116 @@ class Website():
             body = "<article>"
             body += """
 <link rel="stylesheet" href="js/leaflet/leaflet.css" />
+<link rel="stylesheet" href="js/leaflet-elevation/leaflet-elevation/leaflet-elevation.css" />
 <script src="js/leaflet/leaflet.js"></script>
+<script src="js/leaflet-elevation/leaflet-elevation/leaflet-elevation.js"></script>
 <script src="js/gpx.js"></script>
             """
+# <script src="js/leaflet-ui/leaflet-ui.js"></script>
+            body += """
+            <script>
+            function addText(text, divId) {
+                document.getElementById(divId).innerHTML = text;
+            }
+              // Full list options at "leaflet-elevation.js"
+  var elevation_options = {
+
+    // Default chart colors: theme lime-theme, magenta-theme, ...
+    theme: "lightblue-theme",
+
+    // Chart container outside/inside map container
+    detached: true,
+
+    // if (detached), the elevation chart container
+    elevationDiv: "#elevation-div",
+
+    // if (!detached) autohide chart profile on chart mouseleave
+    autohide: false,
+
+    // if (!detached) initial state of chart profile control
+    collapsed: false,
+
+    // if (!detached) control position on one of map corners
+    position: "topright",
+
+    // Toggle close icon visibility
+    closeBtn: false,
+
+    // Autoupdate map center on chart mouseover.
+    followMarker: true,
+
+    // Autoupdate map bounds on chart update.
+    autofitBounds: true,
+
+    // Chart distance/elevation units.
+    imperial: false,
+
+    // [Lat, Long] vs [Long, Lat] points. (leaflet default: [Lat, Long])
+    reverseCoords: false,
+
+    // Acceleration chart profile: true || "summary" || "disabled" || false
+    acceleration: false,
+
+    // Slope chart profile: true || "summary" || "disabled" || false
+    slope: false,
+
+    // Speed chart profile: true || "summary" || "disabled" || false
+    speed: true,
+
+    // Altitude chart profile: true || "summary" || "disabled" || false
+    altitude: true,
+
+    // Display time info: true || "summary" || false
+    time: true,
+
+    // Display distance info: true || "summary" || false
+    distance: true,
+
+    // Summary track info style: "inline" || "multiline" || false
+    summary: 'multiline',
+
+    // Download link: "link" || false || "modal"
+    downloadLink: false,
+
+    // Toggle chart ruler filter
+    ruler: true,
+
+    // Toggle chart legend filter
+    legend: true,
+
+    // Toggle "leaflet-almostover" integration
+    almostOver: true,
+
+    // Toggle "leaflet-distance-markers" integration
+    distanceMarkers: false,
+
+    // Toggle "leaflet-hotline" integration
+    hotline: true,
+
+    // Display track datetimes: true || false
+    timestamps: false,
+
+    // Display track waypoints: true || "markers" || "dots" || false
+    waypoints: true,
+
+    // Toggle custom waypoint icons: true || { associative array of <sym> tags } || false
+    wptIcons: {
+      '': L.divIcon({
+        className: 'elevation-waypoint-marker',
+        html: '<i class="elevation-waypoint-icon"></i>',
+        iconSize: [30, 30],
+        iconAnchor: [8, 30],
+      }),
+    },
+
+    // Toggle waypoint labels: true || "markers" || "dots" || false
+    wptLabels: true,
+
+    // Render chart profiles as Canvas or SVG Paths
+    preferCanvas: true,
+
+  };
+            </script>"""
             body += f"<h2>Activities</h2>"
             body += "\n"
             # Add links to other years
@@ -565,43 +672,45 @@ class Website():
                 body += "</h4>"
                 body += "\n"
                 body += f"""<div id={d}-info class="activityInfo">"""
-                body += f"""<div id="{d}-distance"></div>"""
-                body += f"""<div id="{d}-elevationGain"></div>"""
-                body += f"""<div id="{d}-duration"></div>"""
+                # body += f"""<div class=activityInfoRow><span class="activityInfoTag">Distance: </span><span id="{d}-distance"></span></div>"""
+                # body += f"""<div class=activityInfoRow><span class="activityInfoTag">Elevation gain: </span><span id="{d}-elevationGain"></span></div>"""
+                # body += f"""<div class=activityInfoRow><span class="activityInfoTag">Duration: </span><span id="{d}-duration"></span></div>"""
                 if e is not None:
-                    body += "<br />"
+                    # body += "<br />"
                     body += f"""<div id="{d}-text">{e}</div>"""
                 body += "</div>"
                 body += "<br />"
-                body += f"""<div id="{d}" class="activityMap" style="height: 400px; width: 100%;">"""
+                body += f"""<div id="{d}" class="activityMap">"""
                 body += "</div>"
 
-                body += "<script>"
-                body += f" var map{count} = L.map('{d}');"
+                body += "<script>\n"
+                body += f"var map{count} = L.map('{d}');"
+                body += f"var controlElevation{count} = L.control.elevation(elevation_options).addTo(map{count});"
+                body += f"""controlElevation{count}.load("{l}");"""
                 body += """
         L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
             attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'"""
                 body += "})" + f".addTo(map{count});"
-                body += f"var gpx{count} = '{l}';"
-                body += f" new L.GPX(gpx{count}" + ", {"
-                body += """
-            async: true,
-            marker_options: {
-                startIconUrl: 'img/pin-icon-start.png',
-                endIconUrl:   'img/pin-icon-end.png',
-                shadowUrl:    'img/pin-shadow.png',
-                //clickable: true,
-                //showRouteInfo: true
-            },
-        }).on('loaded', function(e) {\n"""
-                # body += "console.log(e.target);"
-                body += f"map{count}.fitBounds(e.target.getBounds());\n"
-                body += f"""addText("Distance: " + (e.target.get_distance()/1000).toFixed(2) + " km", "{d}-distance");\n"""
-                body += f"""addText("Elevation gain: " + e.target.get_elevation_gain().toFixed(0) + " m", "{d}-elevationGain");\n"""
-                body += f"""addText("Duration: " + new Date(e.target.get_moving_time()).toISOString().substr(11, 8), "{d}-duration");\n"""
-                body += "})"
-                body += f".addTo(map{count});"
+                # body += f"var gpx{count} = '{l}';"
+                # body += f" new L.GPX(gpx{count}" + ", {"
+                # body += """
+            # async: true,
+            # marker_options: {
+                # startIconUrl: 'img/pin-icon-start.png',
+                # endIconUrl:   'img/pin-icon-end.png',
+                # shadowUrl:    'img/pin-shadow.png',
+                # //clickable: true,
+                # //showRouteInfo: true
+            # },
+        # }).on('loaded', function(e) {\n"""
+                # # body += "console.log(e.target);"
+                # body += f"map{count}.fitBounds(e.target.getBounds());\n"
+                # body += f"""addText((e.target.get_distance()/1000).toFixed(2) + " km", "{d}-distance");\n"""
+                # body += f"""addText(e.target.get_elevation_gain().toFixed(0) + " m", "{d}-elevationGain");\n"""
+                # body += f"""addText(new Date(e.target.get_moving_time()).toISOString().substr(11, 8), "{d}-duration");\n"""
+                # body += "})"
+                # body += f".addTo(map{count});"
                 body += "</script>\n"
 
                 # Add images
@@ -615,6 +724,7 @@ class Website():
                     body += f"<figcaption>{image_title}</figcaption>"
 
                 body += "</section>"
+                # body += "<hr />"
                 body += "\n"
 
                 count += 1
@@ -623,12 +733,6 @@ class Website():
             body += "\n"
             body += "</article>"
             body += "\n"
-            body += """
-            <script>
-            function addText(text, divId) {
-                document.getElementById(divId).innerHTML = text;
-            }
-            </script>"""
 
             page = self.combine_layouts(body)
             self.save_page(page, f"activities-{period}.html")
