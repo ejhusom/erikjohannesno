@@ -20,7 +20,7 @@ I have chosen to use map tiles from [OpenTopoMap](https://opentopomap.org/), sin
 My very messy [build-script](https://codeberg.org/erikjohannes/erikjohannesno/src/branch/pages/buildsite.py) for this website takes care of putting the text description and images in the correct places. 
 
 This way I can easily share workouts and activities with friends and family.
-The activities also show up in my [RSS-feed](https://erikjohannes.no/index.xml).  
+The activities also show up in my [RSS-feed](https://erikjohannes.no/index.xml).
 The feed is not very visually pleasing yet, but I will probably fine-tune to CSS to make it look a bit more clean.
 
 Check out the new feed at [this link](https://erikjohannes.no/activities.html)!

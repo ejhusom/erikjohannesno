@@ -6,7 +6,7 @@
         <description>Recent content on Erik Johannes Husom's blog</description>
         <generator>EJs fabulous Python-script</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 02 Aug 2022 17:14:12 -0000</lastBuildDate>
+        <lastBuildDate>Tue, 02 Aug 2022 17:18:49 -0000</lastBuildDate>
         <atom:link href="https://erikjohannes.no/index.xml" rel="self" type="application/rss+xml"/>
                     <item>
             <title>A feed for sports and outdoors activities
@@ -24,7 +24,7 @@ The feed uses &lt;a href=&quot;https://leafletjs.com/&quot;&gt;Leaflet&lt;/a&gt;
 I have chosen to use map tiles from &lt;a href=&quot;https://opentopomap.org/&quot;&gt;OpenTopoMap&lt;/a&gt;, since it&#x27;s important for me to have detailed terrain information when visualizing the activities.
 My very messy &lt;a href=&quot;https://codeberg.org/erikjohannes/erikjohannesno/src/branch/pages/buildsite.py&quot;&gt;build-script&lt;/a&gt; for this website takes care of putting the text description and images in the correct places. &lt;/p&gt;
 &lt;p&gt;This way I can easily share workouts and activities with friends and family.
-The activities also show up in my &lt;a href=&quot;https://erikjohannes.no/index.xml&quot;&gt;RSS-feed&lt;/a&gt;.&lt;br /&gt;
+The activities also show up in my &lt;a href=&quot;https://erikjohannes.no/index.xml&quot;&gt;RSS-feed&lt;/a&gt;.
 The feed is not very visually pleasing yet, but I will probably fine-tune to CSS to make it look a bit more clean.&lt;/p&gt;
 &lt;p&gt;Check out the new feed at &lt;a href=&quot;https://erikjohannes.no/activities.html&quot;&gt;this link&lt;/a&gt;!&lt;/p&gt; </description>
         </item>
