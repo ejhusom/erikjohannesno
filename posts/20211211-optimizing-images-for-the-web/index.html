@@ -43,20 +43,20 @@ I have found it suprisingly difficult to find "best practices" for optimizing im
 <li><a href="https://imagemagick.org/"><code>imagemagick</code></a>: Used to reduce resolution of image.</li>
 </ul>
 <p>Here's the bash script, which takes files as input:</p>
-<p>```bash</p>
-<h1>!/bin/bash</h1>
-<p>for i in "$@"; do
-    # Reduce all metadata, but keep orientation of image:
-    exiftool -all:all= -tagsFromFile @ -exif:Orientation "$i"</p>
-<pre><code># Optimize image to a size of 500 kB:
-jpegoptim --size=500k "$i"
+<pre><code class="language-bash">#!/bin/bash
 
-# Reduce resolution so the width is maximum 1500 pixels 
-# (mogrify is a part of imagemagick)
-mogrify -resize 1500 "$i"
+for i in &quot;$@&quot;; do
+    # Reduce all metadata, but keep orientation of image:
+    exiftool -all:all= -tagsFromFile @ -exif:Orientation &quot;$i&quot;
+
+    # Optimize image to a size of 500 kB:
+    jpegoptim --size=500k &quot;$i&quot;
+
+    # Reduce resolution so the width is maximum 1500 pixels 
+    # (mogrify is a part of imagemagick)
+    mogrify -resize 1500 &quot;$i&quot;
+done
 </code></pre>
-<p>done
-```</p>
 <p>I am by no means an expert on this, but I've found a routine that works fine. If you have any comments or better solutions, <a href="mailto:erikjohannes@protonmail.com">let me know</a>.</p></article>
     <footer>
         No tracking. No cookies. No visit logs.

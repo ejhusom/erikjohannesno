@@ -164,7 +164,7 @@ class Website():
                     md_front_matter = md_post[1]
                     md_content = " ".join(md_post[2:])
 
-                    html_version = md.markdown(md_content)
+                    html_version = md.markdown(md_content, extensions=['fenced_code'])
 
                     with open(f"{self.posts_folder}/{f}/index.html", "w") as outfile:
                         outfile.write(html_version)

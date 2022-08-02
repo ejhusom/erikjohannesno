@@ -25,6 +25,7 @@ CSS for this website:
 }
 ```
 
+
 The first block defines the default values for two text colors, the background
 and a highlight color. With the second block, those variables are redefined if
 the user is using a dark system theme.
