@@ -111,10 +111,13 @@ section.activity {
     padding: 1em;
 }
 
-section.activity img {
-    margin-top: 1em;
+div.activityMap {
+    margin-bottom: 1em;
 }
 
+div.activityInfo {
+    text-align: left;
+}
 
 .date {
     padding: 0em 0.5em;

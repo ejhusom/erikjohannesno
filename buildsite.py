@@ -564,7 +564,7 @@ class Website():
                 body += f"<a href=\"{a}\" class=\"shareButton\">(shareable link)</a>"
                 body += "</h4>"
                 body += "\n"
-                body += f"<div id={d}-info>"
+                body += f"""<div id={d}-info class="activityInfo">"""
                 body += f"""<div id="{d}-distance"></div>"""
                 body += f"""<div id="{d}-elevationGain"></div>"""
                 body += f"""<div id="{d}-duration"></div>"""
@@ -573,7 +573,7 @@ class Website():
                     body += f"""<div id="{d}-text">{e}</div>"""
                 body += "</div>"
                 body += "<br />"
-                body += f"""<div id="{d}" style="height: 400px; width: 100%;">"""
+                body += f"""<div id="{d}" class="activityMap" style="height: 400px; width: 100%;">"""
                 body += "</div>"
 
                 body += "<script>"
