@@ -30,62 +30,136 @@
     </header>
 <article>
 <link rel="stylesheet" href="js/leaflet/leaflet.css" />
+<link rel="stylesheet" href="js/leaflet-elevation/leaflet-elevation/leaflet-elevation.css" />
 <script src="js/leaflet/leaflet.js"></script>
+<script src="js/leaflet-elevation/leaflet-elevation/leaflet-elevation.js"></script>
 <script src="js/gpx.js"></script>
-            <h2>Activities</h2>
+            
+            <script>
+            function addText(text, divId) {
+                document.getElementById(divId).innerHTML = text;
+            }
+              // Full list options at "leaflet-elevation.js"
+  var elevation_options = {
+
+    // Default chart colors: theme lime-theme, magenta-theme, ...
+    theme: "lightblue-theme",
+
+    // Chart container outside/inside map container
+    detached: true,
+
+    // if (detached), the elevation chart container
+    elevationDiv: "#elevation-div",
+
+    // if (!detached) autohide chart profile on chart mouseleave
+    autohide: false,
+
+    // if (!detached) initial state of chart profile control
+    collapsed: false,
+
+    // if (!detached) control position on one of map corners
+    position: "topright",
+
+    // Toggle close icon visibility
+    closeBtn: false,
+
+    // Autoupdate map center on chart mouseover.
+    followMarker: true,
+
+    // Autoupdate map bounds on chart update.
+    autofitBounds: true,
+
+    // Chart distance/elevation units.
+    imperial: false,
+
+    // [Lat, Long] vs [Long, Lat] points. (leaflet default: [Lat, Long])
+    reverseCoords: false,
+
+    // Acceleration chart profile: true || "summary" || "disabled" || false
+    acceleration: false,
+
+    // Slope chart profile: true || "summary" || "disabled" || false
+    slope: false,
+
+    // Speed chart profile: true || "summary" || "disabled" || false
+    speed: true,
+
+    // Altitude chart profile: true || "summary" || "disabled" || false
+    altitude: true,
+
+    // Display time info: true || "summary" || false
+    time: true,
+
+    // Display distance info: true || "summary" || false
+    distance: true,
+
+    // Summary track info style: "inline" || "multiline" || false
+    summary: 'multiline',
+
+    // Download link: "link" || false || "modal"
+    downloadLink: false,
+
+    // Toggle chart ruler filter
+    ruler: true,
+
+    // Toggle chart legend filter
+    legend: true,
+
+    // Toggle "leaflet-almostover" integration
+    almostOver: true,
+
+    // Toggle "leaflet-distance-markers" integration
+    distanceMarkers: false,
+
+    // Toggle "leaflet-hotline" integration
+    hotline: true,
+
+    // Display track datetimes: true || false
+    timestamps: false,
+
+    // Display track waypoints: true || "markers" || "dots" || false
+    waypoints: true,
+
+    // Toggle custom waypoint icons: true || { associative array of <sym> tags } || false
+    wptIcons: {
+      '': L.divIcon({
+        className: 'elevation-waypoint-marker',
+        html: '<i class="elevation-waypoint-icon"></i>',
+        iconSize: [30, 30],
+        iconAnchor: [8, 30],
+      }),
+    },
+
+    // Toggle waypoint labels: true || "markers" || "dots" || false
+    wptLabels: true,
+
+    // Render chart profiles as Canvas or SVG Paths
+    preferCanvas: true,
+
+  };
+            </script><h2>Activities</h2>
 <ul></ul><br/>
 <h3>2022</h3>
 
 <section class=gallerymasonry>
 <section class="galleryitem activity"><h4>2022-05-29: Skaubygdaløpet 2. plass <a href="https://erikjohannes.no/activities-2022.html#2022-05-29" class="shareButton">(shareable link)</a></h4>
-<div id=2022-05-29-info><div id="2022-05-29-distance"></div><div id="2022-05-29-elevationGain"></div><div id="2022-05-29-duration"></div><br /><div id="2022-05-29-text"><p>Halvmaraton på sti. Offisiell distanse 21,1 km, og offisiell tid <a href="https://live.eqtiming.com/58676#result:218000-0-1170312-1-1-">1:22:04</a>.</p></div></div><br /><div id="2022-05-29" style="height: 400px; width: 100%;"></div><script> var map0 = L.map('2022-05-29');
+<div id=2022-05-29-info class="activityInfo"><div id="2022-05-29-text"><p>Halvmaraton på sti. Offisiell distanse 21,1 km, og offisiell tid <a href="https://live.eqtiming.com/58676#result:218000-0-1170312-1-1-">1:22:04</a>.</p></div></div><br /><div id="2022-05-29" class="activityMap"></div><script>
+var map0 = L.map('2022-05-29');var controlElevation0 = L.control.elevation(elevation_options).addTo(map0);controlElevation0.load("activities/2022-05-29-Skaubygdaløpet-2.-plass/2022-05-29-Skaubygdaløpet-2.-plass.gpx");
         L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
-            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'}).addTo(map0);var gpx0 = 'activities/2022-05-29-Skaubygdaløpet-2.-plass/2022-05-29-Skaubygdaløpet-2.-plass.gpx'; new L.GPX(gpx0, {
-            async: true,
-            marker_options: {
-                startIconUrl: 'img/pin-icon-start.png',
-                endIconUrl:   'img/pin-icon-end.png',
-                shadowUrl:    'img/pin-shadow.png',
-                //clickable: true,
-                //showRouteInfo: true
-            },
-        }).on('loaded', function(e) {
-map0.fitBounds(e.target.getBounds());
-addText("Distance: " + (e.target.get_distance()/1000).toFixed(2) + " km", "2022-05-29-distance");
-addText("Elevation gain: " + e.target.get_elevation_gain().toFixed(0) + " m", "2022-05-29-elevationGain");
-addText("Duration: " + new Date(e.target.get_moving_time()).toISOString().substr(11, 8), "2022-05-29-duration");
-}).addTo(map0);</script>
+            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'}).addTo(map0);</script>
 </section>
 <section class="galleryitem activity"><h4>2022-05-16: Rando fra Krossbu <a href="https://erikjohannes.no/activities-2022.html#2022-05-16" class="shareButton">(shareable link)</a></h4>
-<div id=2022-05-16-info><div id="2022-05-16-distance"></div><div id="2022-05-16-elevationGain"></div><div id="2022-05-16-duration"></div><br /><div id="2022-05-16-text"><p>6 topper over 2000 moh. Nydelig vårtur.</p></div></div><br /><div id="2022-05-16" style="height: 400px; width: 100%;"></div><script> var map1 = L.map('2022-05-16');
+<div id=2022-05-16-info class="activityInfo"><div id="2022-05-16-text"><p>6 topper over 2000 moh. Nydelig vårtur.</p></div></div><br /><div id="2022-05-16" class="activityMap"></div><script>
+var map1 = L.map('2022-05-16');var controlElevation1 = L.control.elevation(elevation_options).addTo(map1);controlElevation1.load("activities/2022-05-16-Rando-fra-Krossbu/2022-05-16-Rando-fra-Krossbu.gpx");
         L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
-            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'}).addTo(map1);var gpx1 = 'activities/2022-05-16-Rando-fra-Krossbu/2022-05-16-Rando-fra-Krossbu.gpx'; new L.GPX(gpx1, {
-            async: true,
-            marker_options: {
-                startIconUrl: 'img/pin-icon-start.png',
-                endIconUrl:   'img/pin-icon-end.png',
-                shadowUrl:    'img/pin-shadow.png',
-                //clickable: true,
-                //showRouteInfo: true
-            },
-        }).on('loaded', function(e) {
-map1.fitBounds(e.target.getBounds());
-addText("Distance: " + (e.target.get_distance()/1000).toFixed(2) + " km", "2022-05-16-distance");
-addText("Elevation gain: " + e.target.get_elevation_gain().toFixed(0) + " m", "2022-05-16-elevationGain");
-addText("Duration: " + new Date(e.target.get_moving_time()).toISOString().substr(11, 8), "2022-05-16-duration");
-}).addTo(map1);</script>
+            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'}).addTo(map1);</script>
 <a href="activities/2022-05-16-Rando-fra-Krossbu/Utsikt-fra-Store-Smørstabbtind.JPG"><img src="activities/2022-05-16-Rando-fra-Krossbu/Utsikt-fra-Store-Smørstabbtind.JPG" title="Utsikt fra Store Smørstabbtind"/></a>
 <figcaption>Utsikt fra Store Smørstabbtind</figcaption></section>
 </section>
 </article>
-
-            <script>
-            function addText(text, divId) {
-                document.getElementById(divId).innerHTML = text;
-            }
-            </script>    <footer>
+    <footer>
         No tracking. No cookies. No visit logs.
         <br>
         Copyright: &copy;2018-2022 Erik Johannes Husom. All rights reserved.

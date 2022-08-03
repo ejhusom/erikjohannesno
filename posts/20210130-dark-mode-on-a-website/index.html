@@ -34,14 +34,14 @@
 <h3>30 Jan 2021</h3><p>I just discovered that it is quite easy to make a website adjust the style to
 whether the client is using dark mode or not. Take a look at a snippet of my
 CSS for this website:</p>
-<p>```css
-* {
+<pre><code class="language-css">* {
     --txc: #393838;
     --lc: #1183b9;
     --bgc: #fff;
     --hlc: #70b4d5;
-}</p>
-<p>@media (prefers-color-scheme: dark) {
+}
+
+@media (prefers-color-scheme: dark) {
     * {
         --txc: #f5f5f5;
         --lc: #70b4d5;
@@ -49,7 +49,7 @@ CSS for this website:</p>
         --hlc: #1183b10;
     }
 }
-```</p>
+</code></pre>
 <p>The first block defines the default values for two text colors, the background
 and a highlight color. With the second block, those variables are redefined if
 the user is using a dark system theme.</p>
