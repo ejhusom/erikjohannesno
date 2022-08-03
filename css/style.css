@@ -139,7 +139,7 @@ div.activityInfo {
     width: 100%;
 }
 
-div.sourceCode {
+pre {
     background: var(--bcg2);
     padding: 2px 4px;
     overflow: auto;
