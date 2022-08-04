@@ -75,28 +75,50 @@ class Website():
 
         print("Created", name)
 
+    def build_page(self, f):
+
+        # Check that the page is an HTML or Markdown file
+        if os.path.splitext(f)[1] not in [".html", ".md"]:
+            return 0
+
+        # Read the content for this specific page
+        with open(f, "r") as infile:
+            body = infile.read()
+
+        if os.path.splitext(f)[1] == ".md":
+            body = md.markdown(body, extensions=['fenced_code'])
+            f = f.replace(".md", ".html")
+
+        # Combine the common layouts and the page content
+        page = self.combine_layouts(body)
+
+        # Check if the page should have a wide body
+        if os.path.basename(f) in self.wide_pages:
+            page = page.replace("<body>", "<body class=wide>")
+
+        self.save_page(page, os.path.basename(f))
+
+    def find_pages(self, directory):
+
+        pages = []
+
+        for f in os.listdir(directory):
+            f = os.path.join(directory, f)
+            if os.path.isdir(f):
+                pgs = self.find_pages(f)
+                pages += pgs
+                
+            pages.append(f)
+
+        return pages
+
     def build_pages(self):
 
-        for f in os.listdir(self.pages_folder):
+        pages = self.find_pages(self.pages_folder)
+        # print(pages)
 
-            # Check that the page is a .html file
-            if os.path.splitext(f)[1] != ".html":
-                continue
-
-            # Read the content for this specific page
-            with open(self.pages_folder + "/" + f, "r") as infile:
-                body = infile.read()
-
-            # Combine the common layouts and the page content
-            page = self.combine_layouts(body)
-
-            # Check if the page should have a wide body
-            if os.path.basename(f) in self.wide_pages:
-                page = page.replace("<body>", "<body class=wide>")
-
-            self.save_page(page, f)
-
-
+        for p in pages:
+            self.build_page(p)
 
         for f in os.listdir(self.standalone_folder):
 
