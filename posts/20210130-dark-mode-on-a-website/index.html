@@ -11,8 +11,8 @@
         
         <link rel="icon" href="data:,">
         <link href="css/style.css" rel="stylesheet" type="text/css" title="Stylesheet">
-    </head>
-    <body>
+        <link rel="alternate" type="application/rss+xml" href="/index.xml" title="RSS Feed">
+    </head>    <body>
     <header>
         <h1 class=p-name rel="me">Erik Johannes</h1>
         <br>
@@ -34,7 +34,7 @@
 <h3>30 Jan 2021</h3><p>I just discovered that it is quite easy to make a website adjust the style to
 whether the client is using dark mode or not. Take a look at a snippet of my
 CSS for this website:</p>
-<pre><code class="css">* {
+<pre><code class="language-css">* {
     --txc: #393838;
     --lc: #1183b9;
     --bgc: #fff;
@@ -50,7 +50,6 @@ CSS for this website:</p>
     }
 }
 </code></pre>
-
 <p>The first block defines the default values for two text colors, the background
 and a highlight color. With the second block, those variables are redefined if
 the user is using a dark system theme.</p>
