@@ -42,11 +42,11 @@ class Website():
 
 
         self.wide_pages = [
-                "adventure.html",
-                "landscape.html",
-                "mans-best-friend.html",
-                "plants.html",
-                "wildlife.html"
+                # "adventure.html",
+                # "landscape.html",
+                # "mans-best-friend.html",
+                # "plants.html",
+                # "wildlife.html"
         ]
 
         # Read the common layouts of each page
