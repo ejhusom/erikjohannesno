@@ -28,37 +28,12 @@
             <a href="index.xml">RSS</a>
         </nav>
     </header>
-<article>
-<h2>Dark mode on a website
-</h2>
-<h3>30 Jan 2021</h3><p>I just discovered that it is quite easy to make a website adjust the style to
-whether the client is using dark mode or not. Take a look at a snippet of my
-CSS for this website:</p>
-<pre><code class="css">* {
-    --txc: #393838;
-    --lc: #1183b9;
-    --bgc: #fff;
-    --hlc: #70b4d5;
-}
-
-@media (prefers-color-scheme: dark) {
-    * {
-        --txc: #f5f5f5;
-        --lc: #70b4d5;
-        --bgc: #212121;
-        --hlc: #1183b10;
-    }
-}
-</code></pre>
-
-<p>The first block defines the default values for two text colors, the background
-and a highlight color. With the second block, those variables are redefined if
-the user is using a dark system theme.</p>
-<p>This might be common knowledge for a lot of people, but have not seen this
-functionality much "in the wild". Maybe some people prefer to keep the same
-colors anyway, but I think it is very comfortable that websites dynamically
-adapt to the system theme, especially when there are lots of articles.</p></article>
-    <footer>
+<h2>Vim</h2>
+<h3>Colorschemes</h3>
+<h4>Making your own colorscheme</h4>
+<ul>
+<li><a href="https://github.com/lifepillar/vim-colortemplate">Vim Colortemplate</a></li>
+</ul>    <footer>
         Reply via <a href="mailto:erikjohannes@protonmail.com">email</a> or <a href="https://mastodon.social/@erikjohannes">Mastodon</a>.
         <br />
         No tracking. No cookies. No visit logs.
