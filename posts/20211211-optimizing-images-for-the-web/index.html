@@ -43,7 +43,7 @@ I have found it suprisingly difficult to find "best practices" for optimizing im
 <li><a href="https://imagemagick.org/"><code>imagemagick</code></a>: Used to reduce resolution of image.</li>
 </ul>
 <p>Here's the bash script, which takes files as input:</p>
-<pre><code class="bash">#!/bin/bash
+<pre><code class="language-bash">#!/bin/bash
 
 for i in &quot;$@&quot;; do
     # Reduce all metadata, but keep orientation of image:
@@ -57,10 +57,9 @@ for i in &quot;$@&quot;; do
     mogrify -resize 1500 &quot;$i&quot;
 done
 </code></pre>
-
 <p>I am by no means an expert on this, but I've found a routine that works fine. If you have any comments or better solutions, <a href="mailto:erikjohannes@protonmail.com">let me know</a>.</p></article>
     <footer>
-        Reply via <a href="mailto:erikjohannes@protonmail.com">email</a> or <a href="https://mastodon.social/@erikjohannes">Mastodon</a>.
+        Reply via <a href="mailto:erikjohannes@protonmail.com">email</a>.
         <br />
         No tracking. No cookies. No visit logs.
         <br />

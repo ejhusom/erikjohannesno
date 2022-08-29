@@ -6,7 +6,7 @@
         <description>Recent content on Erik Johannes Husom's blog</description>
         <generator>EJs fabulous Python-script</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 29 Aug 2022 09:46:14 -0000</lastBuildDate>
+        <lastBuildDate>Mon, 29 Aug 2022 17:25:17 -0000</lastBuildDate>
         <atom:link href="https://erikjohannes.no/index.xml" rel="self" type="application/rss+xml"/>
                     <item>
             <title>View towards Rondane</title>
@@ -45,12 +45,12 @@ The feed is not very visually pleasing yet, but I will probably fine-tune to CSS
 workouts. I am using the GoPro HERO7 Black, with no gimbal, and I must say I am
 impressed with the HyperSmooth video stabilisation. &lt;/p&gt;
 &lt;p&gt;Take a look!&lt;/p&gt;
-&lt;p&gt;
+&lt;p&gt;&lt;/p&gt;
 &lt;video id=&quot;video&quot; width=&quot;1280&quot; height=&quot;360&quot; controls&gt;
     &lt;source src=&quot;https://erikjohannes.no/posts/20220801-agility/agility-720.mov&quot; type=&quot;video/mp4&quot;&gt;
     Your browser does not support the video tag.
-&lt;/video&gt; 
-&lt;/p&gt; </description>
+&lt;/video&gt;
+&lt;p&gt;&lt;/p&gt; </description>
         </item>
         <item>
             <title>Towards Forollhogna</title>
@@ -187,28 +187,24 @@ Instead I tried setting up a git server at the command line in the iSH app.
 It proved to be the simplest and most usable approach for me.
 When using the iSH app, the setup is identical to how you would do it when setting up a git server on a normal Linux machine.
 In the app I installed git and git-daemon (they have to be installed individually):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;apk add git
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;apk add git
 apk add git-daemon
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Then I initialized a bare git repo:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;mkdir myrepo.git
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;mkdir myrepo.git
 cd myrepo.git
 git init --bare
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;To serve the repo (and any other git repos in the same folder:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;cd ..
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;cd ..
 git daemon --reuseaddr --base-path=. --export-all --verbose --informative-errors --enable=receive-pack
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;If you want to disable the ability to push to the repos (i. e., clone-only access), skip the last flag.
 To clone repos into Working Copy on the same phone, use &lt;code&gt;git://127.0.0.1:9418/myrepo.git&lt;/code&gt; or &lt;code&gt;git://localhost:9418/myrepo.git&lt;/code&gt; as the URL (9418 is the default port of &lt;code&gt;git daemon&lt;/code&gt;).
 I don&#x27;t think iSH handles running inthe background well, so you might have to press &quot;Clone&quot; in Working Copy (after filling out the URL), switch to iSH to enable the server to complete the request, and then back to Working Copy.
 To clone to other devices, run&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;git clone git://[ipaddress]:9418/myrepo.git
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git clone git://[ipaddress]:9418/myrepo.git
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;where &lt;code&gt;[ipaddress]&lt;/code&gt; is the IP-address of your iPhone on the local network (the other devices obviously have to be connected to the same network).&lt;/p&gt;
 &lt;p&gt;The drawback is of course having to start the server before every push/pull, but for my uses this is acceptable.
 Also, there is no authentication required to pull from the server, so one needs to be sure that there are no bad actors on the local network.&lt;/p&gt;
@@ -275,11 +271,10 @@ Example of the format with a few example events:&lt;/p&gt;
 2023-01-14 w2 Sat 
 2023-01-15 w2 Sun 
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;I find it quite nice since it integrates well with the rest of my very plain text-oriented workflow, and it&#x27;s easily synced and managed with git together with the rest of my plain text files (notes, todos, etc).
 It takes some time to adapt to since the &quot;user interface&quot; is quite different than normal calendar applications, but for those who are familiar with quick navigation in text files (for example using Vim), it can be much more efficient to use a plain text calendar.&lt;/p&gt;
 &lt;p&gt;I also wrote a small bash script for opening the calendar on the current date in Vim:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;today=`date +%Y-%m-%d`
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;today=`date +%Y-%m-%d`
 
 vim /path/to/calendar.txt -c &amp;quot;/$today&amp;quot;
 &lt;/code&gt;&lt;/pre&gt; </description>
@@ -319,9 +314,9 @@ En annen stor fordel med trøyene er at de er såpass fine at man fint kan bruke
 Jeg har løpt mye med sekk til og fra jobb, uten noe plagg mellom sekken og trøya, og jeg ser at det har kommet noen nupper på ryggen på grunn av dette.
 De er så små at jeg ikke ville tenkt over det med en annen trøye, men når klesplagget leverer såpass godt på alle andre punkter, så må man fram med små tingene.&lt;/p&gt;
 &lt;p&gt;Jeg har også skaffet meg den kortermede versjonen, som selvfølgelig fungerer like bra, og trøyene er med på løping, klatring/buldring, jobb, selskap og fjellturer.
-Northern Playground lager trøyer i mange forskjellige fasonger (T-skjorter, langermet, bestefartrøye, zipneck, hoodie etc), så her er det mulig å finne noe for enhver smak.
-&lt;!-- Det at de fungerer i alle sammenhenger i tillegg til at svettelukt ikke blir sittende er --&gt; 
-Selskapet har også en svært &lt;a href=&quot;https://www.northernplayground.no/nb/environment&quot;&gt;miljøvennlig profil&lt;/a&gt;.
+Northern Playground lager trøyer i mange forskjellige fasonger (T-skjorter, langermet, bestefartrøye, zipneck, hoodie etc), så her er det mulig å finne noe for enhver smak.&lt;/p&gt;
+&lt;!-- Det at de fungerer i alle sammenhenger i tillegg til at svettelukt ikke blir sittende er --&gt;
+&lt;p&gt;Selskapet har også en svært &lt;a href=&quot;https://www.northernplayground.no/nb/environment&quot;&gt;miljøvennlig profil&lt;/a&gt;.
 De har flere tiltak for å redusere forbruk, for eksempel at de tilbyr livstidsservice på plaggene, og de har en selvpålagt miljøskatt på hvert salg.&lt;/p&gt;
 &lt;p&gt;Et veldig spennende prosjekt de har gående er &lt;a href=&quot;https://www.northernplayground.no/nb/shop/the-last-jacket&quot;&gt;The Last jakke&lt;/a&gt; og &lt;a href=&quot;https://www.northernplayground.no/nb/shop/the-last-pants&quot;&gt;The Last bukse&lt;/a&gt;.
 Målet er å lage en jakke og en bukse som er de siste du noen gang trenger å kjøpe, og om mulig også gå i arv!
@@ -437,7 +432,7 @@ I have found it suprisingly difficult to find &quot;best practices&quot; for opt
 &lt;li&gt;&lt;a href=&quot;https://imagemagick.org/&quot;&gt;&lt;code&gt;imagemagick&lt;/code&gt;&lt;/a&gt;: Used to reduce resolution of image.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Here&#x27;s the bash script, which takes files as input:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;#!/bin/bash
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;#!/bin/bash
 
 for i in &amp;quot;$@&amp;quot;; do
     # Reduce all metadata, but keep orientation of image:
@@ -451,7 +446,6 @@ for i in &amp;quot;$@&amp;quot;; do
     mogrify -resize 1500 &amp;quot;$i&amp;quot;
 done
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;I am by no means an expert on this, but I&#x27;ve found a routine that works fine. If you have any comments or better solutions, &lt;a href=&quot;mailto:erikjohannes@protonmail.com&quot;&gt;let me know&lt;/a&gt;.&lt;/p&gt; </description>
         </item>
         <item>
@@ -736,12 +730,12 @@ med dobbeltsidig teip.&lt;/p&gt;
 &lt;em&gt;Slik ser det ferdige brettet ut.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Snøen begynner dessverre i forsvinne her i strøket, så måtte løpe et godt
 stykke opp på fjellet for å få testa brettet. &lt;/p&gt;
-&lt;p&gt;
+&lt;p&gt;&lt;/p&gt;
 &lt;video id=&quot;video&quot; controls&gt;
     &lt;source src=&quot;https://erikjohannes.no/posts/20210522-je-skal-laga-snobrett-i-kryssfiner/1.mp4&quot; type=&quot;video/mp4&quot;&gt;
     Your browser does not support the video tag.
-&lt;/video&gt; 
-&lt;/p&gt;
+&lt;/video&gt;
+&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;Bitene av liggeunderlag som jeg brukte til padding for føttene falt dessverre
 av etter noen runder, fordi de ikke festet seg godt nok til den dobbeltsidige
 teipen. Tror jeg skal prøve med en friksjonsteip i stedet (sånn man bruker på
@@ -908,15 +902,14 @@ one for the &lt;code&gt;.zim&lt;/code&gt;-files, and another one for other file 
 from &lt;a href=&quot;https://www.kiwix.org/en/downloads/kiwix-serve/&quot;&gt;this link&lt;/a&gt; (if you use a
 Raspberry Pi like me, choose the version called &quot;GNU/Linux ARM 32-bits&quot;).
 Unpack the zipped file with&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;tar -xvzf kiwix-tools_linux-armhf-3.1.2-4.tar.gz
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;tar -xvzf kiwix-tools_linux-armhf-3.1.2-4.tar.gz
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Your version number might be different though. The contents are unpacked to a
 folder with the same name as the zipped file. I rename this folder &lt;code&gt;kiwix&lt;/code&gt; to
 make things easier, and then move all my downloaded &lt;code&gt;.zim&lt;/code&gt;-files to this
 folder. If you for example download a file called &lt;code&gt;wikipedia.zom&lt;/code&gt; and another
 file called &lt;code&gt;gutenberg.zim&lt;/code&gt;, the folder should look like&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;kiwix/
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;kiwix/
 ├── gutenberg.zim
 ├── kiwix-manage
 ├── kiwix-read
@@ -924,16 +917,13 @@ file called &lt;code&gt;gutenberg.zim&lt;/code&gt;, the folder should look like&
 ├── kiwix-serve
 └── wikipedia.zim
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;First you need to make a library containing your &lt;code&gt;.zim&lt;/code&gt;-files:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;./kiwix-manage library.xml add gutenberg.zim
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;./kiwix-manage library.xml add gutenberg.zim
 ./kiwix-manage library.xml add wikipedia.zim
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;This library can now be served by running:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;./kiwix-serve --port=8080 --library library.xml 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;./kiwix-serve --port=8080 --library library.xml 
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Go to &lt;code&gt;localhost:8080&lt;/code&gt; in the browser of the Raspberry Pi to see the content.
 If the Raspberry Pi is connected to a WiFi-network, you can view the content
 from other devices by going to &lt;code&gt;[Local IP of the Pi]:8080&lt;/code&gt; in the browser
@@ -943,9 +933,8 @@ from other devices by going to &lt;code&gt;[Local IP of the Pi]:8080&lt;/code&gt
 of course requires that you have Python installed on your system). This simply
 means that I run the following command in the folder containing the files I
 want to serve:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;python3 -m http.server 8081
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;python3 -m http.server 8081
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;In this case I have chosen to serve on port 8081, but this can be any other
 port (if you omit the port number, it will be set to 8000) as long it&#x27;s not the
 same as the other servers you have set up.&lt;/p&gt;
@@ -956,14 +945,12 @@ from other devices by going to &lt;code&gt;[Local IP of the Pi]:8081&lt;/code&gt
 &lt;h4&gt;Make server start automatically&lt;/h4&gt;
 &lt;p&gt;In order to make the file serving start automatically when I boot the Pi, I
 simply add cronjobs. Add cronjobs by editing the crontab file:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;crontab -e
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;crontab -e
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Add the following files to the bottom:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;@reboot /path/to/kiwix/kiwix-serve --port=8080 --library /path/to/kiwix/library.xml
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;@reboot /path/to/kiwix/kiwix-serve --port=8080 --library /path/to/kiwix/library.xml
 @reboot python3 -m http.server --directory /path/to/files/ 8081
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Now these commands will run every time you boot up the Pi.&lt;/p&gt;
 &lt;h3&gt;Setting up the Pi to broadcast its own WiFi-network&lt;/h3&gt;
 &lt;p&gt;(The instructions in this section were found in the Raspberry Pi documentation
@@ -976,40 +963,33 @@ devices are connected to (including the Pi), you can skip this step.&lt;/p&gt;
 &lt;p&gt;I used the below commands to make the Raspberry Pi broadcast its own WiFi
 network.&lt;/p&gt;
 &lt;p&gt;Install access point software:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;sudo apt install hostapd
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo apt install hostapd
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Enable the accesspoint service and make it start on boot:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;sudo systemctl unmask hostapd
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo systemctl unmask hostapd
 sudo systemctl enable hostapd
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Provide network management services:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;sudo apt install dnsmasq
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo apt install dnsmasq
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Utility for firewall rules:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;After installing the software above, I edited the configuration file for
 &lt;code&gt;dhcpcd&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;sudo vim /etc/dhcpcd.conf
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo vim /etc/dhcpcd.conf
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;These  lines were added to the end:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;interface wlan0
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;interface wlan0
     static ip_address=192.168.4.1/24
     nohook wpa_supplicant
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;The Pi will be reachable in the IP address &lt;code&gt;192.168.4.1&lt;/code&gt; after the setup
 process is complete, and you are connected to the WiFi of the Pi.&lt;/p&gt;
 &lt;p&gt;Then I created the &lt;code&gt;hostapd&lt;/code&gt; configuration file:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;sudo vim /etc/hostapd/hostapd.conf
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo vim /etc/hostapd/hostapd.conf
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;country_code=&amp;lt;COUNTRY CODE&amp;gt;
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;country_code=&amp;lt;COUNTRY CODE&amp;gt;
 interface=wlan0
 ssid=&amp;lt;NAME OF NETWORK&amp;gt;
 hw_mode=g
@@ -1023,7 +1003,6 @@ wpa_key_mgmt=WPA-PSK
 wpa_pairwise=TKIP
 rsn_pairwise=CCMP
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;In my case, &lt;code&gt;&amp;lt;COUNTRY CODE&amp;gt;&lt;/code&gt; was &lt;code&gt;NO&lt;/code&gt; because I live in Norway, and one also have
 to fill in a name for the network and password.&lt;/p&gt;
 &lt;p&gt;After a reboot (&lt;code&gt;sudo systemctl reboot&lt;/code&gt;) the Raspberry Pi will broadcast its
@@ -1097,7 +1076,7 @@ be very beneficial, especially for essential content such as news.&lt;/p&gt; </d
             <description>&lt;p&gt;I just discovered that it is quite easy to make a website adjust the style to
 whether the client is using dark mode or not. Take a look at a snippet of my
 CSS for this website:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;css&quot;&gt;* {
+&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;* {
     --txc: #393838;
     --lc: #1183b9;
     --bgc: #fff;
@@ -1113,7 +1092,6 @@ CSS for this website:&lt;/p&gt;
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;The first block defines the default values for two text colors, the background
 and a highlight color. With the second block, those variables are redefined if
 the user is using a dark system theme.&lt;/p&gt;
@@ -1531,11 +1509,11 @@ tilbake.&lt;/p&gt;
 &lt;!--more--&gt;
 
 &lt;p&gt;
-
-
 &lt;/p&gt;
-&lt;div id=&quot;map&quot; style=&quot;height: 400px; width: 100%;&quot;&gt;&lt;/div&gt;
 
+
+
+&lt;div id=&quot;map&quot; style=&quot;height: 400px; width: 100%;&quot;&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;/p&gt;
@@ -1553,12 +1531,12 @@ På toppen av Midtronden Aust, med utsikt mot Midtronden Vest.&lt;/p&gt;
 Sola nærmer seg horisonten, rett over Rondeslottet.&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&quot;&quot; src=&quot;https://erikjohannes.no/posts/20200307-rondane/20200307-rondane-10.jpg&quot; /&gt;
 Nede igjen ved Gammelgarden.&lt;/p&gt;
-&lt;p&gt;
+&lt;p&gt;&lt;/p&gt;
 &lt;video id=&quot;video&quot; width=&quot;640&quot; height=&quot;480&quot; controls&gt;
     &lt;source src=&quot;https://erikjohannes.no/posts/20200307-rondane/20200307-rondane-video.mp4&quot; type=&quot;video/mp4&quot;&gt;
     Your browser does not support the video tag.
-&lt;/video&gt; 
-&lt;/p&gt; </description>
+&lt;/video&gt;
+&lt;p&gt;&lt;/p&gt; </description>
         </item>
         <item>
             <title>Skyline Scotland
@@ -1567,12 +1545,11 @@ Nede igjen ved Gammelgarden.&lt;/p&gt;
             <pubDate>Fri, 20 Sep 2019 00:00:00 -0000</pubDate>
             <guid>https://erikjohannes.no/posts/20190920-scotland/index.html</guid>
             <description>&lt;!--more--&gt;
+&lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;
 
-&lt;/p&gt;
+
 &lt;div id=&quot;map&quot; style=&quot;height: 400px; width: 100%;&quot;&gt;&lt;/div&gt;
-
 &lt;figcaption&gt;Map of the Glen Coe Skyline route.&lt;/figcaption&gt;
 
 
@@ -1642,13 +1619,12 @@ Scotland.&lt;/p&gt; </description>
             <pubDate>Sun, 10 Mar 2019 00:00:00 -0000</pubDate>
             <guid>https://erikjohannes.no/posts/20190310-maridalen/index.html</guid>
             <description>&lt;!--more--&gt;
-
 &lt;p&gt;
-
-
 &lt;/p&gt;
-&lt;div id=&quot;map&quot; style=&quot;height: 400px; width: 100%;&quot;&gt;&lt;/div&gt;
 
+
+
+&lt;div id=&quot;map&quot; style=&quot;height: 400px; width: 100%;&quot;&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;/p&gt;
