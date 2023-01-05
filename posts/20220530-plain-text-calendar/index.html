@@ -53,10 +53,11 @@ Example of the format with a few example events:</p>
 2023-01-14 w2 Sat 
 2023-01-15 w2 Sun 
 </code></pre>
+
 <p>I find it quite nice since it integrates well with the rest of my very plain text-oriented workflow, and it's easily synced and managed with git together with the rest of my plain text files (notes, todos, etc).
 It takes some time to adapt to since the "user interface" is quite different than normal calendar applications, but for those who are familiar with quick navigation in text files (for example using Vim), it can be much more efficient to use a plain text calendar.</p>
 <p>I also wrote a small bash script for opening the calendar on the current date in Vim:</p>
-<pre><code class="language-sh">today=`date +%Y-%m-%d`
+<pre><code class="sh">today=`date +%Y-%m-%d`
 
 vim /path/to/calendar.txt -c &quot;/$today&quot;
 </code></pre></article>
