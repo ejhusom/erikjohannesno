@@ -56,7 +56,7 @@ For those who long for a simpler and more meaningful life, this will give some i
 This book was written in the 1970s and outlines problems related to media and specifically television, but it is just as relevant today, and most of the reasoning can be applied directly to how we are affected by social media and technology today.
 
 
-## A couple of other books on how we are affected by technology
+### A couple of other books on how we are affected by technology
 
 - *The Shallows* by Nicolas Carr
 - *Stand out of our Light* by James Williams 
