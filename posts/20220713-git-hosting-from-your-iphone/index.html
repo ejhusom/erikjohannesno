@@ -62,28 +62,24 @@ Instead I tried setting up a git server at the command line in the iSH app.
 It proved to be the simplest and most usable approach for me.
 When using the iSH app, the setup is identical to how you would do it when setting up a git server on a normal Linux machine.
 In the app I installed git and git-daemon (they have to be installed individually):</p>
-<pre><code class="shell">apk add git
+<pre><code class="language-shell">apk add git
 apk add git-daemon
 </code></pre>
-
 <p>Then I initialized a bare git repo:</p>
-<pre><code class="shell">mkdir myrepo.git
+<pre><code class="language-shell">mkdir myrepo.git
 cd myrepo.git
 git init --bare
 </code></pre>
-
 <p>To serve the repo (and any other git repos in the same folder:</p>
-<pre><code class="shell">cd ..
+<pre><code class="language-shell">cd ..
 git daemon --reuseaddr --base-path=. --export-all --verbose --informative-errors --enable=receive-pack
 </code></pre>
-
 <p>If you want to disable the ability to push to the repos (i. e., clone-only access), skip the last flag.
 To clone repos into Working Copy on the same phone, use <code>git://127.0.0.1:9418/myrepo.git</code> or <code>git://localhost:9418/myrepo.git</code> as the URL (9418 is the default port of <code>git daemon</code>).
 I don't think iSH handles running inthe background well, so you might have to press "Clone" in Working Copy (after filling out the URL), switch to iSH to enable the server to complete the request, and then back to Working Copy.
 To clone to other devices, run</p>
-<pre><code class="shell">git clone git://[ipaddress]:9418/myrepo.git
+<pre><code class="language-shell">git clone git://[ipaddress]:9418/myrepo.git
 </code></pre>
-
 <p>where <code>[ipaddress]</code> is the IP-address of your iPhone on the local network (the other devices obviously have to be connected to the same network).</p>
 <p>The drawback is of course having to start the server before every push/pull, but for my uses this is acceptable.
 Also, there is no authentication required to pull from the server, so one needs to be sure that there are no bad actors on the local network.</p>
