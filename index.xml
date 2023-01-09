@@ -6,9 +6,23 @@
         <description>Recent content on Erik Johannes Husom's blog</description>
         <generator>EJs fabulous Python-script</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 09 Jan 2023 08:12:12 -0000</lastBuildDate>
+        <lastBuildDate>Mon, 09 Jan 2023 08:14:59 -0000</lastBuildDate>
         <atom:link href="https://erikjohannes.no/index.xml" rel="self" type="application/rss+xml"/>
                     <item>
+            <title>Playing in powder with Gjert
+</title>
+            <link>https://erikjohannes.no/posts/20230109-playing-in-powder-with-gjert/index.html</link>
+            <pubDate>Mon, 09 Jan 2023 00:00:00 -0000</pubDate>
+            <guid>https://erikjohannes.no/posts/20230109-playing-in-powder-with-gjert/index.html</guid>
+            <description>&lt;p&gt;A fun afternoon skiing with my Border collie Gjert in our backyard.&lt;/p&gt;
+&lt;p&gt;
+&lt;video id=&quot;video&quot; width=&quot;1280&quot; height=&quot;360&quot; controls&gt;
+    &lt;source src=&quot;https://erikjohannes.no/posts/20230109-playing-in-powder-with-gjert/skiing-720.mp4&quot; type=&quot;video/mp4&quot;&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt; 
+&lt;/p&gt; </description>
+        </item>
+        <item>
             <title>Reconstructing Obsidian features in Vim and Bash
 </title>
             <link>https://erikjohannes.no/posts/20230108-reconstructing-obsidian-features-in-vim/index.html</link>
@@ -65,20 +79,6 @@ I tried searching for an existing solution; the only similar thing I could find 
 You can find the current version of the script here: &lt;a href=&quot;https://codeberg.org/erikjohannes/linkmv&quot;&gt;linkmv&lt;/a&gt;.
 I&#x27;m pretty inexperienced in bash, and I haven&#x27;t tested all the possible edge cases, but it&#x27;s a work in progress.
 Hopefully I&#x27;ll get something working eventually (contributions and tips welcome)!&lt;/p&gt; </description>
-        </item>
-        <item>
-            <title>Playing in powder with Gjert
-</title>
-            <link>https://erikjohannes.no/posts/20230109-playing-in-powder-with-gjert/index.html</link>
-            <pubDate>Sun, 08 Jan 2023 00:00:00 -0000</pubDate>
-            <guid>https://erikjohannes.no/posts/20230109-playing-in-powder-with-gjert/index.html</guid>
-            <description>&lt;p&gt;A fun afternoon skiing with my Border collie Gjert in our backyard.&lt;/p&gt;
-&lt;p&gt;
-&lt;video id=&quot;video&quot; width=&quot;1280&quot; height=&quot;360&quot; controls&gt;
-    &lt;source src=&quot;https://erikjohannes.no/posts/20230109-playing-in-powder-with-gjert/skiing-720.mp4&quot; type=&quot;video/mp4&quot;&gt;
-    Your browser does not support the video tag.
-&lt;/video&gt; 
-&lt;/p&gt; </description>
         </item>
         <item>
             <title>Links #2: Note-taking

@@ -1,5 +1,5 @@
 ---
-date: 2023-01-08T09:00:00
+date: 2023-01-09T09:00:00
 title: Playing in powder with Gjert
 type: ["posts"]
 draft: false
