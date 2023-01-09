@@ -57,8 +57,9 @@ Because if this, I wanted instead to reconstruct some of the Obsidian features I
 <h3>Easily insert links to other files</h3>
 <p>To make this work, the links to other files has to be relative paths (otherwise images and links won't work properly when rendering the Markdown in HTML).
 With the plugin fzf.vim, the following line maps <code>ctrl-x ctrl-f</code> to search for any file in the parent directory from which you opened Vim (which means I always open Vim from the root directory of my note collection) and insert its relative path from the current open file when you press Enter:</p>
-<pre><code class="language-vim">inoremap &lt;expr&gt; &lt;c-x&gt;&lt;c-f&gt; fzf#vim#complete(&quot;find -print0 &lt;Bar&gt; xargs --null realpath --relative-to &quot; . expand(&quot;%:h&quot;))
+<pre><code class="vim">inoremap &lt;expr&gt; &lt;c-x&gt;&lt;c-f&gt; fzf#vim#complete(&quot;find -print0 &lt;Bar&gt; xargs --null realpath --relative-to &quot; . expand(&quot;%:h&quot;))
 </code></pre>
+
 <p>The line above is put in your <code>.vimrc</code> (Vim configuration file). 
 Made based on tips from <a href="https://github.com/junegunn/fzf.vim/pull/628">this GitHub-thread</a>.</p>
 <h3>Open link to another file with a keypress</h3>
@@ -66,11 +67,12 @@ Made based on tips from <a href="https://github.com/junegunn/fzf.vim/pull/628">t
 <code>ctrl-w ctrl-f</code> opens the filepath under the cursor. </p>
 <h3>Opening a random note</h3>
 <p>This one was easily implemented in a bash script:</p>
-<pre><code class="language-shell">#!/bin/bash
+<pre><code class="shell">#!/bin/bash
 
 file=$(find /path/to/markdown-collection/ -name &quot;*.md&quot; | sort -R | head -1)
 vim $file
 </code></pre>
+
 <h3>General navigation</h3>
 <p>The plugin <a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> makes navigation very easy, both inside Vim and at the command line.
 When having files open in Vim, the command <code>:Files</code> let's you fuzzy search for filenames, and <code>:Rg</code> (if you have installed <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> let's you fuzzy search for file contents.

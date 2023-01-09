@@ -84,14 +84,15 @@ one for the <code>.zim</code>-files, and another one for other file types.</p>
 from <a href="https://www.kiwix.org/en/downloads/kiwix-serve/">this link</a> (if you use a
 Raspberry Pi like me, choose the version called "GNU/Linux ARM 32-bits").
 Unpack the zipped file with</p>
-<pre><code class="language-sh">tar -xvzf kiwix-tools_linux-armhf-3.1.2-4.tar.gz
+<pre><code class="sh">tar -xvzf kiwix-tools_linux-armhf-3.1.2-4.tar.gz
 </code></pre>
+
 <p>Your version number might be different though. The contents are unpacked to a
 folder with the same name as the zipped file. I rename this folder <code>kiwix</code> to
 make things easier, and then move all my downloaded <code>.zim</code>-files to this
 folder. If you for example download a file called <code>wikipedia.zom</code> and another
 file called <code>gutenberg.zim</code>, the folder should look like</p>
-<pre><code class="language-sh">kiwix/
+<pre><code class="sh">kiwix/
 ├── gutenberg.zim
 ├── kiwix-manage
 ├── kiwix-read
@@ -99,13 +100,16 @@ file called <code>gutenberg.zim</code>, the folder should look like</p>
 ├── kiwix-serve
 └── wikipedia.zim
 </code></pre>
+
 <p>First you need to make a library containing your <code>.zim</code>-files:</p>
-<pre><code class="language-sh">./kiwix-manage library.xml add gutenberg.zim
+<pre><code class="sh">./kiwix-manage library.xml add gutenberg.zim
 ./kiwix-manage library.xml add wikipedia.zim
 </code></pre>
+
 <p>This library can now be served by running:</p>
-<pre><code class="language-sh">./kiwix-serve --port=8080 --library library.xml 
+<pre><code class="sh">./kiwix-serve --port=8080 --library library.xml 
 </code></pre>
+
 <p>Go to <code>localhost:8080</code> in the browser of the Raspberry Pi to see the content.
 If the Raspberry Pi is connected to a WiFi-network, you can view the content
 from other devices by going to <code>[Local IP of the Pi]:8080</code> in the browser
@@ -115,8 +119,9 @@ from other devices by going to <code>[Local IP of the Pi]:8080</code> in the bro
 of course requires that you have Python installed on your system). This simply
 means that I run the following command in the folder containing the files I
 want to serve:</p>
-<pre><code class="language-sh">python3 -m http.server 8081
+<pre><code class="sh">python3 -m http.server 8081
 </code></pre>
+
 <p>In this case I have chosen to serve on port 8081, but this can be any other
 port (if you omit the port number, it will be set to 8000) as long it's not the
 same as the other servers you have set up.</p>
@@ -127,12 +132,14 @@ from other devices by going to <code>[Local IP of the Pi]:8081</code> in the bro
 <h4>Make server start automatically</h4>
 <p>In order to make the file serving start automatically when I boot the Pi, I
 simply add cronjobs. Add cronjobs by editing the crontab file:</p>
-<pre><code class="language-sh">crontab -e
+<pre><code class="sh">crontab -e
 </code></pre>
+
 <p>Add the following files to the bottom:</p>
-<pre><code class="language-sh">@reboot /path/to/kiwix/kiwix-serve --port=8080 --library /path/to/kiwix/library.xml
+<pre><code class="sh">@reboot /path/to/kiwix/kiwix-serve --port=8080 --library /path/to/kiwix/library.xml
 @reboot python3 -m http.server --directory /path/to/files/ 8081
 </code></pre>
+
 <p>Now these commands will run every time you boot up the Pi.</p>
 <h3>Setting up the Pi to broadcast its own WiFi-network</h3>
 <p>(The instructions in this section were found in the Raspberry Pi documentation
@@ -145,33 +152,40 @@ devices are connected to (including the Pi), you can skip this step.</p>
 <p>I used the below commands to make the Raspberry Pi broadcast its own WiFi
 network.</p>
 <p>Install access point software:</p>
-<pre><code class="language-sh">sudo apt install hostapd
+<pre><code class="sh">sudo apt install hostapd
 </code></pre>
+
 <p>Enable the accesspoint service and make it start on boot:</p>
-<pre><code class="language-sh">sudo systemctl unmask hostapd
+<pre><code class="sh">sudo systemctl unmask hostapd
 sudo systemctl enable hostapd
 </code></pre>
+
 <p>Provide network management services:</p>
-<pre><code class="language-sh">sudo apt install dnsmasq
+<pre><code class="sh">sudo apt install dnsmasq
 </code></pre>
+
 <p>Utility for firewall rules:</p>
-<pre><code class="language-sh">sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
+<pre><code class="sh">sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
 </code></pre>
+
 <p>After installing the software above, I edited the configuration file for
 <code>dhcpcd</code>:</p>
-<pre><code class="language-sh">sudo vim /etc/dhcpcd.conf
+<pre><code class="sh">sudo vim /etc/dhcpcd.conf
 </code></pre>
+
 <p>These  lines were added to the end:</p>
-<pre><code class="language-sh">interface wlan0
+<pre><code class="sh">interface wlan0
     static ip_address=192.168.4.1/24
     nohook wpa_supplicant
 </code></pre>
+
 <p>The Pi will be reachable in the IP address <code>192.168.4.1</code> after the setup
 process is complete, and you are connected to the WiFi of the Pi.</p>
 <p>Then I created the <code>hostapd</code> configuration file:</p>
-<pre><code class="language-sh">sudo vim /etc/hostapd/hostapd.conf
+<pre><code class="sh">sudo vim /etc/hostapd/hostapd.conf
 </code></pre>
-<pre><code class="language-sh">country_code=&lt;COUNTRY CODE&gt;
+
+<pre><code class="sh">country_code=&lt;COUNTRY CODE&gt;
 interface=wlan0
 ssid=&lt;NAME OF NETWORK&gt;
 hw_mode=g
@@ -185,6 +199,7 @@ wpa_key_mgmt=WPA-PSK
 wpa_pairwise=TKIP
 rsn_pairwise=CCMP
 </code></pre>
+
 <p>In my case, <code>&lt;COUNTRY CODE&gt;</code> was <code>NO</code> because I live in Norway, and one also have
 to fill in a name for the network and password.</p>
 <p>After a reboot (<code>sudo systemctl reboot</code>) the Raspberry Pi will broadcast its
