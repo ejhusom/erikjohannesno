@@ -1,5 +1,5 @@
 ---
-date: 2023-01-05T07:00:00+02:00
+date: 2023-01-02T07:00:00+02:00
 title: My best reads of 2022
 type: ["posts"]
 draft: false
@@ -12,7 +12,7 @@ Maybe I can provide some tips on your next read?
 
 Here's a summary of some of the best books I read in 2022:
 
-### *The Age of Low Technolgoies* by Philippe Bihouix
+### *The Age of Low Technologies* by Philippe Bihouix
 
 This book gives a very important perspective on how we may solve the challenges we face regarding climate change and over-consumption of resources.
 

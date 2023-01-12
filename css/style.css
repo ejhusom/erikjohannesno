@@ -136,7 +136,9 @@ div.activityInfo {
 
 .date {
     padding: 0em 0.5em;
-    width: 100%;
+    /* width: 9ch; */
+    /* display: inline-block; */
+    /* text-align: right; */
 }
 
 pre {

@@ -6,9 +6,81 @@
         <description>Recent content on Erik Johannes Husom's blog</description>
         <generator>EJs fabulous Python-script</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 06 Jan 2023 07:51:51 -0000</lastBuildDate>
+        <lastBuildDate>Mon, 09 Jan 2023 10:18:14 -0000</lastBuildDate>
         <atom:link href="https://erikjohannes.no/index.xml" rel="self" type="application/rss+xml"/>
                     <item>
+            <title>Playing in powder with Gjert
+</title>
+            <link>https://erikjohannes.no/posts/20230109-playing-in-powder-with-gjert/index.html</link>
+            <pubDate>Mon, 09 Jan 2023 00:00:00 -0000</pubDate>
+            <guid>https://erikjohannes.no/posts/20230109-playing-in-powder-with-gjert/index.html</guid>
+            <description>&lt;p&gt;A fun afternoon skiing with my Border collie Gjert in our backyard.&lt;/p&gt;
+&lt;p&gt;
+&lt;video id=&quot;video&quot; width=&quot;1280&quot; height=&quot;360&quot; controls&gt;
+    &lt;source src=&quot;https://erikjohannes.no/posts/20230109-playing-in-powder-with-gjert/skiing-720.mp4&quot; type=&quot;video/mp4&quot;&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt; 
+&lt;/p&gt; </description>
+        </item>
+        <item>
+            <title>Reconstructing Obsidian features in Vim and Bash
+</title>
+            <link>https://erikjohannes.no/posts/20230108-reconstructing-obsidian-features-in-vim/index.html</link>
+            <pubDate>Sun, 08 Jan 2023 00:00:00 -0000</pubDate>
+            <guid>https://erikjohannes.no/posts/20230108-reconstructing-obsidian-features-in-vim/index.html</guid>
+            <description>&lt;p&gt;I have a large collection of plain text files (mostly Markdown) that contain all my notes and writings, both for work and non-work, which I navigate and modify using Vim, fzf, shell scripts and command line utilities (on mobile I use the excellent app &lt;a href=&quot;https://workingcopy.app/&quot;&gt;Working Copy&lt;/a&gt;).
+Everything is of course synced and version-controlled using Git.&lt;/p&gt;
+&lt;p&gt;I recently discovered that &lt;a href=&quot;https://obsidian.md/&quot;&gt;Obsidian&lt;/a&gt; has a range of interesting features, and since it is meant to manage a collection of Markdown-notes (which still can be synced through a git-repo between desktop and mobile apps), I could try it out without having to do any changes at all to my current structure or formatting of my files. 
+I downloaded the apps for desktop and mobile, and everything was good to go.&lt;/p&gt;
+&lt;p&gt;The most exciting features for me in Obsidian are the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Easily link between files, both between individual notes and inserting images into notes by using Markdown syntax.&lt;/li&gt;
+&lt;li&gt;Open link to another file with a keypress.&lt;/li&gt;
+&lt;li&gt;Button for opening a random note (yes, I actually find this useful, because it creates opportunities for sparking ideas through serendipity, and it can also work as &quot;spaced repetition&quot; for things you want to learn or remember).&lt;/li&gt;
+&lt;li&gt;Links between files are updated automatically when you rename or move a file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I think Obsidian works great in general, and even though it is closed source software, anyone can write plugins for it.
+There are many useful &quot;community plugins&quot; that really increases the usefulness of the program.
+However, I missed writing in my usual text editor at the command line.&lt;/p&gt;
+&lt;p&gt;Obsidian has the option of using Vim keybindings, but that does not replace the configurability of Vim, and the advantage of using command line utilities and scripting as a part of the workflow. 
+Also, I kept hitting &lt;code&gt;ctrl-W [h,j,k,l]&lt;/code&gt; in order to change between panes in Obsidian, but of course &lt;code&gt;ctrl-W&lt;/code&gt; means &quot;close file&quot; when you are outside the command line.&lt;/p&gt;
+&lt;p&gt;The user experience of Obsidian on iOS is a bit &quot;messy&quot; in my opinion, and I found myself opening Working Copy more often than Obsidian to edit files. 
+Navigating the file explorer in Obsidian on both desktop and mobile is less than optimal, among other things because of no easy way to collapse all folders, and I found myself scrolling a lot.&lt;/p&gt;
+&lt;p&gt;Some of my complaints can be fixed through plugins, either existing ones or by writing one myself, but the power of the command line  is either way out of reach.
+Because if this, I wanted instead to reconstruct some of the Obsidian features I liked the most in Vim (or at the command line) &lt;/p&gt;
+&lt;h3&gt;Easily insert links to other files&lt;/h3&gt;
+&lt;p&gt;To make this work, the links to other files has to be relative paths (otherwise images and links won&#x27;t work properly when rendering the Markdown in HTML).
+With the plugin fzf.vim, the following line maps &lt;code&gt;ctrl-x ctrl-f&lt;/code&gt; to search for any file in the parent directory from which you opened Vim (which means I always open Vim from the root directory of my note collection) and insert its relative path from the current open file when you press Enter:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;vim&quot;&gt;inoremap &amp;lt;expr&amp;gt; &amp;lt;c-x&amp;gt;&amp;lt;c-f&amp;gt; fzf#vim#complete(&amp;quot;find -print0 &amp;lt;Bar&amp;gt; xargs --null realpath --relative-to &amp;quot; . expand(&amp;quot;%:h&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The line above is put in your &lt;code&gt;.vimrc&lt;/code&gt; (Vim configuration file). 
+Made based on tips from &lt;a href=&quot;https://github.com/junegunn/fzf.vim/pull/628&quot;&gt;this GitHub-thread&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Open link to another file with a keypress&lt;/h3&gt;
+&lt;p&gt;Vim already had functionality for this, I just didn&#x27;t know about it.
+&lt;code&gt;ctrl-w ctrl-f&lt;/code&gt; opens the filepath under the cursor. &lt;/p&gt;
+&lt;h3&gt;Opening a random note&lt;/h3&gt;
+&lt;p&gt;This one was easily implemented in a bash script:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;#!/bin/bash
+
+file=$(find /path/to/markdown-collection/ -name &amp;quot;*.md&amp;quot; | sort -R | head -1)
+vim $file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;General navigation&lt;/h3&gt;
+&lt;p&gt;The plugin &lt;a href=&quot;https://github.com/junegunn/fzf.vim&quot;&gt;fzf.vim&lt;/a&gt; makes navigation very easy, both inside Vim and at the command line.
+When having files open in Vim, the command &lt;code&gt;:Files&lt;/code&gt; let&#x27;s you fuzzy search for filenames, and &lt;code&gt;:Rg&lt;/code&gt; (if you have installed &lt;a href=&quot;https://github.com/BurntSushi/ripgrep&quot;&gt;ripgrep&lt;/a&gt; let&#x27;s you fuzzy search for file contents.
+I&#x27;m quite restrictive of adding specific configuration and plugins to my Vim setup and want to keep things lean (I only use two plugins currently), but fzf.vim has really made my workflow much better.&lt;/p&gt;
+&lt;h3&gt;Automatically update links when renaming or moving file&lt;/h3&gt;
+&lt;p&gt;I use linking between files quite a lot, especially for embedding images into Markdown-files.
+Sometimes I restructure or rename filenames, and since I might have embedded one image into multiple files, it would be a massive time saver if all the links could update automatically when moving or renaming a file.
+I tried searching for an existing solution; the only similar thing I could find was an &lt;a href=&quot;https://github.com/mathiassoeholm/markdown-link-updater&quot;&gt;extension for VSCode&lt;/a&gt;, but no solution for Vim.&lt;/p&gt;
+&lt;p&gt;I have made an attempt to make a shell script for moving/renaming files, which automatically updates all links to the file in Markdown-files of the working directory.
+You can find the current version of the script here: &lt;a href=&quot;https://codeberg.org/erikjohannes/linkmv&quot;&gt;linkmv&lt;/a&gt;.
+I&#x27;m pretty inexperienced in bash, and I haven&#x27;t tested all the possible edge cases, but it&#x27;s a work in progress.
+Hopefully I&#x27;ll get something working eventually (contributions and tips welcome)!&lt;/p&gt; </description>
+        </item>
+        <item>
             <title>Links #2: Note-taking
 </title>
             <link>https://erikjohannes.no/posts/20230106-links-2-note-taking/index.html</link>
@@ -25,15 +97,36 @@
 Even though digital tools typically are the first choice in many situations, we shouldn&#x27;t forget the strengths of a simple pen and paper. &lt;/p&gt; </description>
         </item>
         <item>
+            <title>Plowing trail</title>
+            <link>https://erikjohannes.no/photofeed-2023.html#2023-01-04</link>
+            <pubDate>Wed, 04 Jan 2023 00:00:00 -0000</pubDate>
+            <guid>https://erikjohannes.no/photography/photofeed/2023-01-04-Plowing-trail.jpg</guid>
+            <description>&lt;img src=&quot;https://erikjohannes.no/photography/photofeed/2023-01-04-Plowing-trail.jpg&quot; alt=&#x27;&#x27;/&gt;&lt;figcaption&gt;Plowing trail&lt;/figcaption&gt; </description>
+        </item>
+        <item>
+            <title>Chalet with a view</title>
+            <link>https://erikjohannes.no/photofeed-2023.html#2023-01-03</link>
+            <pubDate>Tue, 03 Jan 2023 00:00:00 -0000</pubDate>
+            <guid>https://erikjohannes.no/photography/photofeed/2023-01-03-Chalet-with-a-view.jpg</guid>
+            <description>&lt;img src=&quot;https://erikjohannes.no/photography/photofeed/2023-01-03-Chalet-with-a-view.jpg&quot; alt=&#x27;&#x27;/&gt;&lt;figcaption&gt;Chalet with a view&lt;/figcaption&gt; </description>
+        </item>
+        <item>
+            <title>Spot the border collie</title>
+            <link>https://erikjohannes.no/photofeed-2023.html#2023-01-02</link>
+            <pubDate>Mon, 02 Jan 2023 00:00:00 -0000</pubDate>
+            <guid>https://erikjohannes.no/photography/photofeed/2023-01-02-Spot-the-border-collie.jpeg</guid>
+            <description>&lt;img src=&quot;https://erikjohannes.no/photography/photofeed/2023-01-02-Spot-the-border-collie.jpeg&quot; alt=&#x27;&#x27;/&gt;&lt;figcaption&gt;Spot the border collie&lt;/figcaption&gt; </description>
+        </item>
+        <item>
             <title>My best reads of 2022
 </title>
             <link>https://erikjohannes.no/posts/20230102-my-best-reads-of-2022/index.html</link>
-            <pubDate>Thu, 05 Jan 2023 00:00:00 -0000</pubDate>
+            <pubDate>Mon, 02 Jan 2023 00:00:00 -0000</pubDate>
             <guid>https://erikjohannes.no/posts/20230102-my-best-reads-of-2022/index.html</guid>
             <description>&lt;p&gt;I usually discover new books to read through references or quotes from previous books I have read, but sometimes I also get some useful recommendations from blogs or people I talk to. 
 Maybe I can provide some tips on your next read?&lt;/p&gt;
 &lt;p&gt;Here&#x27;s a summary of some of the best books I read in 2022:&lt;/p&gt;
-&lt;h3&gt;&lt;em&gt;The Age of Low Technolgoies&lt;/em&gt; by Philippe Bihouix&lt;/h3&gt;
+&lt;h3&gt;&lt;em&gt;The Age of Low Technologies&lt;/em&gt; by Philippe Bihouix&lt;/h3&gt;
 &lt;p&gt;This book gives a very important perspective on how we may solve the challenges we face regarding climate change and over-consumption of resources.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Some innovations, and perhaps those to be feared most because they are often ones that are profitable, allows the absurd needs generated by systems to be fulfilled. Nanoscale particles allow a sunscreen to offer protection and a feeling of freshness; RFID chips makes it possible to pay for the contents of your supermarket trolley without going to the cash register; office glazing can be made opaque by eletrical impulse; refrigerators prepare the shopping list. We are far from the &quot;revolutions&quot; of the steam engine and crop rotation! These examples are caricatures, but emblematic of many of today&#x27;s &quot;innovations&quot;. Frankly, would we develop such high-tech applications if we knew the real price to pay, in terms of factory waste, the disappearance of nature and resources, the destruction of everything that has sustained us, physically and intellectually, for millenia? We cannot say.&lt;/p&gt;
@@ -72,11 +165,18 @@ For those who long for a simpler and more meaningful life, this will give some i
 &lt;/ul&gt; </description>
         </item>
         <item>
-            <title>Spot the border collie</title>
-            <link>https://erikjohannes.no/photofeed-2023.html#2023-01-02</link>
-            <pubDate>Mon, 02 Jan 2023 00:00:00 -0000</pubDate>
-            <guid>https://erikjohannes.no/photography/photofeed/2023-01-02-Spot-the-border-collie.jpeg</guid>
-            <description>&lt;img src=&quot;https://erikjohannes.no/photography/photofeed/2023-01-02-Spot-the-border-collie.jpeg&quot; alt=&#x27;&#x27;/&gt;&lt;figcaption&gt;Spot the border collie&lt;/figcaption&gt; </description>
+            <title>The White Tree of Folldal</title>
+            <link>https://erikjohannes.no/photofeed-2023.html#2023-01-01</link>
+            <pubDate>Sun, 01 Jan 2023 00:00:00 -0000</pubDate>
+            <guid>https://erikjohannes.no/photography/photofeed/2023-01-01-The-White-Tree-of-Folldal.jpg</guid>
+            <description>&lt;img src=&quot;https://erikjohannes.no/photography/photofeed/2023-01-01-The-White-Tree-of-Folldal.jpg&quot; alt=&#x27;&#x27;/&gt;&lt;figcaption&gt;The White Tree of Folldal&lt;/figcaption&gt; </description>
+        </item>
+        <item>
+            <title>Mushing</title>
+            <link>https://erikjohannes.no/photofeed-2022.html#2022-12-27</link>
+            <pubDate>Tue, 27 Dec 2022 00:00:00 -0000</pubDate>
+            <guid>https://erikjohannes.no/photography/photofeed/2022-12-27-Mushing.jpg</guid>
+            <description>&lt;img src=&quot;https://erikjohannes.no/photography/photofeed/2022-12-27-Mushing.jpg&quot; alt=&#x27;&#x27;/&gt;&lt;figcaption&gt;Mushing&lt;/figcaption&gt; </description>
         </item>
         <item>
             <title>View towards Rondane</title>
@@ -117,7 +217,7 @@ impressed with the HyperSmooth video stabilisation. &lt;/p&gt;
 &lt;p&gt;Take a look!&lt;/p&gt;
 &lt;p&gt;
 &lt;video id=&quot;video&quot; width=&quot;1280&quot; height=&quot;360&quot; controls&gt;
-    &lt;source src=&quot;https://erikjohannes.no/posts/20220801-agility/agility-720.mov&quot; type=&quot;video/mp4&quot;&gt;
+    &lt;source src=&quot;https://erikjohannes.no/posts/20220801-agility/agility-720.mp4&quot; type=&quot;video/mp4&quot;&gt;
     Your browser does not support the video tag.
 &lt;/video&gt; 
 &lt;/p&gt; </description>
