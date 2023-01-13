@@ -391,7 +391,7 @@ class Website():
             body += f"<h3>{period}</h3>"
             body += "\n"
             body += "\n"
-            body += "<section class=gallerymasonry>"
+            body += "<section class=gallerymasonryPhotos>"
             body += "\n"
 
             for l, a, t, d, p in zip(photofeed_links, photofeed_absolute_links, photofeed_titles,
@@ -408,7 +408,7 @@ class Website():
                 body += "</a>"
                 body += "\n"
                 body += f"<figcaption>{d}: {t} "
-                body += f"<a href=\"{a}\" class=\"shareButton\">(shareable link)</a>"
+                body += f"<a href=\"{a}\" class=\"shareLink\"><img class=\"shareButton\" src=\"img/link.svg\" alt=\"Share link\"/></a>"
                 body += "</figcaption>"
                 body += "\n"
                 body += "</section>"
@@ -690,7 +690,7 @@ class Website():
                 # Make section in overview page
                 body += """<section class="galleryitem activity">"""
                 body += f"<h4>{d}: {t} "
-                body += f"<a href=\"{a}\" class=\"shareButton\">(shareable link)</a>"
+                body += f"<a href=\"{a}\" class=\"shareLink\"><img class=\"shareButton\" src=\"img/link.svg\" alt=\"Share link\"/></a>"
                 body += "</h4>"
                 body += "\n"
                 body += f"""<div id={d}-info class="activityInfo">"""
