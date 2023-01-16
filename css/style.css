@@ -14,6 +14,9 @@
         --bcg2: #313131;
         --hlc: #1183b1;
     }
+    .shareButton {
+        filter: invert(1);
+    }
 }
 
 body {
