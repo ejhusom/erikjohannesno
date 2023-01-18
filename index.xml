@@ -6,7 +6,7 @@
         <description>Recent content on Erik Johannes Husom's blog</description>
         <generator>EJs fabulous Python-script</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 18 Jan 2023 15:59:45 -0000</lastBuildDate>
+        <lastBuildDate>Wed, 18 Jan 2023 17:17:09 -0000</lastBuildDate>
         <atom:link href="https://erikjohannes.no/index.xml" rel="self" type="application/rss+xml"/>
                     <item>
             <title>Green AI
@@ -15,15 +15,15 @@
             <pubDate>Wed, 18 Jan 2023 00:00:00 -0000</pubDate>
             <guid>https://erikjohannes.no/posts/20230118-green-ai/index.html</guid>
             <description>&lt;p&gt;One year ago I wrote a blog post about &lt;a href=&quot;https://erikjohannes.no/posts/20220105-machine-learning-and-carbon-emissions/&quot;&gt;machine learning and carbon emissions&lt;/a&gt;. Since then, we have experienced some ground-breaking developments in the world of AI. With the release of image generators like DALL-E and large language models (LLMs) like ChatGPT, we are talking about a whole new scale of computational load for using, let alone training such models. What&#x27;s more, these are no longer tools reserved for research purposes, but deployed software that people all over the world has started using on a daily basis.&lt;/p&gt;
-&lt;p&gt;In my research group, Trustworthy Green IoT Software at SINTEF Digital, we are exploring how we can contribute to Green AI, which refers to environmentally friendly AI development. One of the tools we have developed, an &lt;a href=&quot;https://github.com/sintef-9012/erdre&quot;&gt;ML pipeline for supervised learning&lt;/a&gt;, uses &lt;a href=&quot;https://dvc.org/&quot;&gt;https://dvc.org&lt;/a&gt; for pipeline orchestration, which we see as a measure of reducing the energy usage through caching and skipping unnecessary reruns of pipeline stages. Many researchers are calling for measuring and reporting the carbon footprint in order to bring awareness to the issue, which is something we want to bring into our existing tools. The question is whether such measures are sufficient when the power of LLMs and similar tools is pushing the development in a much more resource-intensive direction.&lt;/p&gt;
+&lt;p&gt;In my research group, Trustworthy Green IoT Software at SINTEF Digital, we are exploring how we can contribute to Green AI, which refers to environmentally friendly AI development. One of the tools we have developed, an &lt;a href=&quot;https://github.com/sintef-9012/erdre&quot;&gt;ML pipeline for supervised learning&lt;/a&gt;, uses &lt;a href=&quot;https://dvc.org/&quot;&gt;DVC&lt;/a&gt; for pipeline orchestration, which we see as a measure of reducing the energy usage through caching and skipping unnecessary reruns of pipeline stages. Many researchers are calling for measuring and reporting the carbon footprint in order to bring awareness to the issue, which is something we want to bring into our existing tools. The question is whether such measures are sufficient when the power of LLMs and similar tools is pushing the development in a much more resource-intensive direction.&lt;/p&gt;
 &lt;p&gt;If you are an AI/ML researcher or practitioner, how do you look at the increasing carbon footprint of ML models, and do you see &quot;Green AI&quot; as an important aspect for the future of AI development? Will the power of extremely large models always win over models with smaller footprint, or is it possible to find a balance between performance and energy efficiency?&lt;/p&gt; </description>
         </item>
         <item>
             <title>Skiing new lines
 </title>
-            <link>https://erikjohannes.no/posts/20230118-skiing-new-lines/index.html</link>
+            <link>https://erikjohannes.no/posts/20230117-skiing-new-lines/index.html</link>
             <pubDate>Tue, 17 Jan 2023 00:00:00 -0000</pubDate>
-            <guid>https://erikjohannes.no/posts/20230118-skiing-new-lines/index.html</guid>
+            <guid>https://erikjohannes.no/posts/20230117-skiing-new-lines/index.html</guid>
             <description>&lt;p&gt;One of my new year&#x27;s resolutions: Always ski a new line through the forest when going back to the cabin. It surprised me how much fun I can have in my own backyard just by exploring a bit more.&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&quot;This is the year of glade skiing for me.&quot; src=&quot;https://erikjohannes.no/posts/20230118-skiing-new-lines/1.jpeg&quot; /&gt;
 &lt;em&gt;This is the year of glade skiing for me.&lt;/em&gt;&lt;/p&gt; </description>
